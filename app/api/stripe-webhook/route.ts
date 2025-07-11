@@ -1,7 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { headers } from "next/headers"
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
+// Stripe設定（環境変数が未設定の場合のデフォルト値）
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY || "sk_test_dummy_key_for_build"
+const stripe = require("stripe")(stripeSecretKey)
 
 export async function POST(request: NextRequest) {
   try {
