@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
     console.log("受信したデータ:", JSON.stringify(applicationData, null, 2))
 
     // 簡単なテスト用メール送信
-    const RESEND_API_KEY = "re_Uxq9jsrp_EB6Vx2CR6pLhQ9X6MuJ6ypg4"
+    const RESEND_API_KEY = "re_EnppcCwL_N6fuktQnJRxmEk2aPa235gat"
 
     const emailPayload = {
       from: "TOWA <onboarding@resend.dev>",

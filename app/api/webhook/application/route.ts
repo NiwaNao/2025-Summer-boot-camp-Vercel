@@ -242,7 +242,7 @@ async function sendEmail({
 }) {
   try {
     // 新しいAPIキーを使用
-    const RESEND_API_KEY = process.env.RESEND_API_KEY || "re_Uxq9jsrp_EB6Vx2CR6pLhQ9X6MuJ6ypg4"
+    const RESEND_API_KEY = process.env.RESEND_API_KEY || "re_EnppcCwL_N6fuktQnJRxmEk2aPa235gat"
 
     console.log(`--- メール送信試行 ---`)
     console.log(`宛先: ${to}`)

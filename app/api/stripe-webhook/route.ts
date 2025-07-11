@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
 // メール送信関数
 async function sendApplicationEmails(applicationData: any) {
   try {
-    const RESEND_API_KEY = "re_Uxq9jsrp_EB6Vx2CR6pLhQ9X6MuJ6ypg4"
+    const RESEND_API_KEY = "re_EnppcCwL_N6fuktQnJRxmEk2aPa235gat"
 
     // 運営側への通知メール
     const adminEmailContent = `
@@ -176,20 +176,10 @@ Email：info@towa-ai.com
   }
 }
 
-// Resendを使用したメール送信関数
-async function sendEmail({
-  to,
-  subject,
-  text,
-  html,
-}: {
-  to: string
-  subject: string
-  text: string
-  html: string
-}) {
+// メール送信用の関数
+async function sendEmail({ to, subject, text, html }: { to: string; subject: string; text: string; html: string }) {
   try {
-    const RESEND_API_KEY = "re_Uxq9jsrp_EB6Vx2CR6pLhQ9X6MuJ6ypg4"
+    const RESEND_API_KEY = "re_EnppcCwL_N6fuktQnJRxmEk2aPa235gat"
 
     const emailPayload = {
       from: "TOWA <onboarding@resend.dev>",

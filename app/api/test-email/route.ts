@@ -2,10 +2,8 @@ import { NextResponse } from "next/server"
 
 export async function POST() {
   try {
-    console.log("=== メール送信テスト開始 ===")
-
-    // 新しいAPIキーを使用
-    const RESEND_API_KEY = "re_Uxq9jsrp_EB6Vx2CR6pLhQ9X6MuJ6ypg4"
+    console.log("メール送信テスト開始")
+    const RESEND_API_KEY = "re_EnppcCwL_N6fuktQnJRxmEk2aPa235gat"
 
     console.log(`APIキー: ${RESEND_API_KEY.substring(0, 8)}...`)
 
