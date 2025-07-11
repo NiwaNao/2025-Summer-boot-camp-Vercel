@@ -702,48 +702,38 @@ export default function ApplyPage() {
             <CardContent className="space-y-4">
               <div className="bg-white p-4 rounded-lg border border-orange-200">
                 <h4 className="font-bold text-orange-900 mb-3">📅 キャンセル・返金について</h4>
+                <p className="text-sm text-orange-800 mb-3">お支払い後のキャンセルは、以下の通り返金対応いたします。</p>
                 <div className="space-y-3 text-sm text-orange-800">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
                     <div>
-                      <strong>講座開始7日前まで：</strong>全額返金いたします（振込手数料を除く）
+                      <strong>開催7日前まで：</strong>全額返金
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
                     <div>
-                      <strong>講座開始3〜6日前：</strong>受講料の50%を返金いたします
+                      <strong>開催6日前〜3日前：</strong>受講料の50％を返金
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
                     <div>
-                      <strong>講座開始2日前〜当日：</strong>返金はできません
+                      <strong>開催2日前以降：</strong>返金不可
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <div className="bg-white p-4 rounded-lg border border-orange-200">
-                <h4 className="font-bold text-orange-900 mb-3">🔄 振替について</h4>
-                <div className="space-y-3 text-sm text-orange-800">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <div>
-                      <strong>講座開始前日まで：</strong>他の開催日への振替が可能です（空席がある場合に限ります）
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <div>
-                      <strong>振替手数料：</strong>無料（ただし、振替は1回限りとさせていただきます）
-                    </div>
+                <div className="mt-4 p-3 bg-orange-50 rounded-lg border border-orange-200">
+                  <div className="text-xs text-orange-700 space-y-1">
+                    <p>※返金はStripeを通じてクレジットカードへ行います。</p>
+                    <p>※返金時、Stripe決済手数料（約3.6%）はご返金対象外となります。</p>
+                    <p>※ご不明な点はお気軽にご連絡ください。</p>
                   </div>
                 </div>
               </div>
 
               <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                <h4 className="font-bold text-blue-900 mb-2">📞 キャンセル・振替のご連絡方法</h4>
+                <h4 className="font-bold text-blue-900 mb-2">📞 キャンセルのご連絡方法</h4>
                 <div className="text-sm text-blue-800 space-y-1">
                   <p>
                     <strong>Email：</strong>info@towa-ai.com
@@ -752,7 +742,7 @@ export default function ApplyPage() {
                     <strong>LINE：</strong>@towa-ai
                   </p>
                   <p className="text-xs text-blue-600 mt-2">
-                    ※ キャンセル・振替をご希望の場合は、お早めにご連絡ください
+                    ※ キャンセルをご希望の場合は、お早めにご連絡ください
                   </p>
                 </div>
               </div>
