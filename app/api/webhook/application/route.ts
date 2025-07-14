@@ -49,14 +49,15 @@ ${applicationData.partnerName ? `■ ペア受講者：${applicationData.partner
 
 【講座について】
 ・各回8名の超少人数制
+・最低開催人数：3名
 ・講師2名による手厚いサポート
 ・実践的なカリキュラムで即戦力スキルを習得
 
 【キャンセル・変更について】
 お支払い後のキャンセルは、以下の通り返金対応いたします。
 
-・開催7日前まで：全額返金
-・開催6日前〜3日前：受講料の50％を返金
+・開催10日前まで：全額返金
+・開催9日前〜3日前：受講料の50％を返金
 ・開催2日前以降：返金不可
 
 ※返金はStripeを通じてクレジットカードへ行います。
@@ -70,16 +71,13 @@ ${applicationData.partnerName ? `■ ペア受講者：${applicationData.partner
 📱 LINE：@towa-ai（https://lin.ee/tjGDXcN）
 
 講座当日、${applicationData.attendeeName}様にお会いできることを楽しみにしております。
-AIを活用したスキルアップで、新しい可能性を一緒に見つけましょう！
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 TOWA（トーワ）- 札幌限定サマーブートキャンプ
 運営：株式会社アクロス
-〒107-0061 東京都港区北青山1-3-1 アールキューブ青山 3F
-運営拠点：東京・札幌
 Email：info@towa-ai.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  `
+`
 }
 
 export async function POST(request: NextRequest) {
@@ -88,7 +86,7 @@ export async function POST(request: NextRequest) {
     const applicationData = await request.json()
     console.log("受信したデータ:", JSON.stringify(applicationData, null, 2))
 
-    // 運営側への通知メール
+    // 運営側への通知メール内容
     const adminEmailContent = `
 新しい申し込みがありました。（決済完了）
 
@@ -156,66 +154,51 @@ Webhook URL: ${request.url}
     // 申込者向けお礼メールの内容
     const thankYouEmailContent = createThankYouEmailContent(applicationData)
 
-    // メール送信処理
+    // メール送信処理（ログ出力のみ）
     const emailResults = []
 
-    console.log("=== メール送信開始 ===")
+    console.log("=== メール内容をログに出力 ===")
 
-    // 1. 運営側への通知メール
-    console.log("運営側メール送信中...")
-    const adminEmailResponse = await sendEmail({
-      to: "info@towa-ai.com",
-      subject: `【TOWA】新しい申し込み - ${applicationData.attendeeName}様`,
-      text: adminEmailContent,
-      html: adminEmailContent.replace(/\n/g, "<br>").replace(/\s{2,}/g, " "),
-    })
-    emailResults.push({ type: "admin", success: adminEmailResponse.success, error: adminEmailResponse.error })
-    console.log("運営側メール結果:", adminEmailResponse)
+    // 1. 運営側への通知メール内容をログ出力
+    console.log("--- 運営側メール内容 ---")
+    console.log(`宛先: info@towa-ai.com`)
+    console.log(`件名: 【TOWA】新しい申し込み - ${applicationData.attendeeName}様`)
+    console.log(`内容:\n${adminEmailContent}`)
+    emailResults.push({ type: "admin", success: true, message: "ログ出力完了" })
 
-    // 2. 申込者へのお礼メール
-    console.log("申込者メール送信中...")
-    const applicantEmailResponse = await sendEmail({
-      to: applicationData.email,
-      subject: `【TOWA】お申し込みありがとうございます - ${applicationData.attendeeName}様`,
-      text: thankYouEmailContent,
-      html: thankYouEmailContent.replace(/\n/g, "<br>").replace(/\s{2,}/g, " "),
-    })
-    emailResults.push({
-      type: "applicant",
-      success: applicantEmailResponse.success,
-      error: applicantEmailResponse.error,
-    })
-    console.log("申込者メール結果:", applicantEmailResponse)
+    // 2. 申込者へのお礼メール内容をログ出力
+    console.log("--- 申込者向けメール内容 ---")
+    console.log(`宛先: ${applicationData.email}`)
+    console.log(`件名: 【TOWA】お申し込みありがとうございます - ${applicationData.attendeeName}様`)
+    console.log(`内容:\n${thankYouEmailContent}`)
+    emailResults.push({ type: "applicant", success: true, message: "ログ出力完了" })
 
-    // 3. ペア受講者へのお礼メール（該当する場合）
+    // 3. ペア受講者へのお礼メール内容をログ出力（該当する場合）
     if (applicationData.partnerName && applicationData.partnerEmail) {
-      console.log("ペア受講者メール送信中...")
+      console.log("--- ペア受講者向けメール内容 ---")
       const partnerThankYouContent = createThankYouEmailContent({
         ...applicationData,
         attendeeName: applicationData.partnerName,
         email: applicationData.partnerEmail,
       })
-
-      const partnerEmailResponse = await sendEmail({
-        to: applicationData.partnerEmail,
-        subject: `【TOWA】お申し込みありがとうございます - ${applicationData.partnerName}様`,
-        text: partnerThankYouContent,
-        html: partnerThankYouContent.replace(/\n/g, "<br>").replace(/\s{2,}/g, " "),
-      })
-      emailResults.push({ type: "partner", success: partnerEmailResponse.success, error: partnerEmailResponse.error })
-      console.log("ペア受講者メール結果:", partnerEmailResponse)
+      console.log(`宛先: ${applicationData.partnerEmail}`)
+      console.log(`件名: 【TOWA】お申し込みありがとうございます - ${applicationData.partnerName}様`)
+      console.log(`内容:\n${partnerThankYouContent}`)
+      emailResults.push({ type: "partner", success: true, message: "ログ出力完了" })
     }
 
-    console.log("=== 全メール送信結果 ===")
+    // 4. Zapierのwebhookに送信（無効化：Stripe決済完了後のみ送信するため）
+    // await sendToZapier(applicationData, adminEmailContent, thankYouEmailContent)
+
+    console.log("=== 全メール処理結果 ===")
     console.log("Email results:", emailResults)
 
-    // メール送信が失敗してもWebhook自体は成功として扱う
     const successCount = emailResults.filter((r) => r.success).length
     const totalCount = emailResults.length
 
     return NextResponse.json({
       success: true,
-      message: `申し込み情報を受信しました。メール送信: ${successCount}/${totalCount}件成功`,
+      message: `申し込み情報を受信しました。メール処理: ${successCount}/${totalCount}件完了（ログ出力のみ）`,
       emailResults: emailResults,
     })
   } catch (error) {
@@ -228,61 +211,65 @@ Webhook URL: ${request.url}
   }
 }
 
-// Resendを使用したメール送信関数（新しいAPIキーを使用）
-async function sendEmail({
-  to,
-  subject,
-  text,
-  html,
-}: {
-  to: string
-  subject: string
-  text: string
-  html: string
-}) {
+// Zapierのwebhookに送信する関数
+async function sendToZapier(applicationData: any, adminEmailContent: string, thankYouEmailContent: string) {
   try {
-    // 新しいAPIキーを使用
-    const RESEND_API_KEY = process.env.RESEND_API_KEY || "re_EnppcCwL_N6fuktQnJRxmEk2aPa235gat"
+    // ZapierのWebhook URLを環境変数から取得（設定後に使用）
+    const zapierWebhookUrl = process.env.ZAPIER_WEBHOOK_URL
 
-    console.log(`--- メール送信試行 ---`)
-    console.log(`宛先: ${to}`)
-    console.log(`件名: ${subject}`)
-    console.log(`APIキー: ${RESEND_API_KEY.substring(0, 8)}...`)
-
-    const emailPayload = {
-      from: "TOWA <onboarding@resend.dev>", // Resendのデフォルト送信元
-      to: [to],
-      subject: subject,
-      text: text,
-      html: html,
+    if (!zapierWebhookUrl) {
+      console.log("ZapierのWebhook URLが設定されていません")
+      return
     }
 
-    console.log("送信ペイロード:", JSON.stringify(emailPayload, null, 2))
+    const zapierData = {
+      // 基本情報
+      attendeeName: applicationData.attendeeName,
+      attendeeEmail: applicationData.email,
+      attendeePhone: applicationData.phone,
+      company: applicationData.company || "",
+      
+      // 受講情報
+      selectedDate: applicationData.selectedDate,
+      price: applicationData.price,
+      pricingType: applicationData.pricingType,
+      discountType: applicationData.discountType,
+      aiExperience: applicationData.aiExperience,
+      motivation: applicationData.motivation,
+      
+      // ペア情報（該当する場合）
+      partnerName: applicationData.partnerName || "",
+      partnerEmail: applicationData.partnerEmail || "",
+      partnerPhone: applicationData.partnerPhone || "",
+      
+      // メール内容
+      adminEmailContent: adminEmailContent,
+      applicantEmailContent: thankYouEmailContent,
+      
+      // その他
+      timestamp: applicationData.timestamp,
+      privacyAgreed: applicationData.privacyAgreed,
+      termsAgreed: applicationData.termsAgreed,
+    }
 
-    const response = await fetch("https://api.resend.com/emails", {
+    console.log("=== Zapierにデータ送信 ===")
+    console.log("送信先:", zapierWebhookUrl)
+    console.log("送信データ:", JSON.stringify(zapierData, null, 2))
+
+    const response = await fetch(zapierWebhookUrl, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(emailPayload),
+      body: JSON.stringify(zapierData),
     })
 
-    console.log(`レスポンスステータス: ${response.status}`)
-
-    const result = await response.json()
-    console.log("レスポンス内容:", JSON.stringify(result, null, 2))
-
     if (response.ok) {
-      console.log("✅ メール送信成功")
-      return { success: true, data: result }
+      console.log("✅ Zapierへの送信成功")
     } else {
-      console.error("❌ メール送信失敗")
-      console.error("エラー詳細:", result)
-      return { success: false, error: result }
+      console.error("❌ Zapierへの送信失敗:", response.status, response.statusText)
     }
   } catch (error) {
-    console.error("❌ メール送信例外エラー:", error)
-    return { success: false, error: String(error) }
+    console.error("❌ Zapier送信エラー:", error)
   }
 }

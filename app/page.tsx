@@ -603,13 +603,13 @@ export default function HighConvertingLP() {
 
             <div className="divide-y divide-gray-200">
               {[
-                { date: "8月2日（土）", course: "AI×SNS運用講座（1日）", time: "10:00〜16:50" },
-                { date: "8月11日（月・祝）", course: "AI×GAS自動化講座（1日）", time: "10:00〜17:50" },
-                { date: "8月12日（火）", course: "AI×SNS運用講座（1日）", time: "10:00〜16:50" },
-                { date: "8月13日（水）", course: "AI×GAS自動化講座（1日）", time: "10:00〜17:50" },
-                { date: "8月16日（土）", course: "AI×SNS運用講座（1日）", time: "10:00〜16:50" },
-                { date: "8月23日（土）", course: "AI×GAS自動化講座（1日）", time: "10:00〜17:50" },
-                { date: "8月30日（土）", course: "AI×SNS運用講座（1日）", time: "10:00〜16:50" },
+{ date: "8月11日（月・祝）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
+{ date: "8月12日（火）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
+{ date: "8月13日（水）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
+{ date: "8月16日（土）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
+{ date: "8月24日（土）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
+{ date: "8月30日（土）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
+{ date: "8月31日（日）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
               ].map((session, index) => (
                 <div key={index} className="p-6 hover:bg-gray-50 transition-colors">
                   <div className="grid md:grid-cols-3 gap-4 items-center">

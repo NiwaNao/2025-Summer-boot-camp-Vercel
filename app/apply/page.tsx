@@ -321,13 +321,13 @@ export default function ApplyPage() {
                     </p>
                     <div className="grid gap-3">
                       {[
-                        { date: "8月2日（土）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
                         { date: "8月11日（月・祝）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
                         { date: "8月12日（火）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
                         { date: "8月13日（水）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
                         { date: "8月16日（土）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
-                        { date: "8月23日（土）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
-                        { date: "8月30日（土）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
+                        { date: "8月24日（土）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
+                        { date: "8月30日（土）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
+                        { date: "8月31日（日）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
                       ].map((session, index) => (
                         <div key={index} className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50">
                           <input
@@ -365,13 +365,13 @@ export default function ApplyPage() {
                 ) : (
                   <RadioGroup value={selectedDate} onValueChange={setSelectedDate}>
                     {[
-                      { date: "8月2日（土）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
                       { date: "8月11日（月・祝）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
                       { date: "8月12日（火）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
                       { date: "8月13日（水）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
                       { date: "8月16日（土）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
-                      { date: "8月23日（土）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
-                      { date: "8月30日（土）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
+                      { date: "8月24日（土）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
+                      { date: "8月30日（土）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
+                      { date: "8月31日（日）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
                     ].map((session, index) => (
                       <div key={index} className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50">
                         <RadioGroupItem value={`${session.date} ${session.course}`} id={`date-${index}`} />
@@ -707,13 +707,13 @@ export default function ApplyPage() {
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
                     <div>
-                      <strong>開催7日前まで：</strong>全額返金
+                      <strong>開催10日前まで：</strong>全額返金
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
                     <div>
-                      <strong>開催6日前〜3日前：</strong>受講料の50％を返金
+                      <strong>開催9日前〜3日前：</strong>受講料の50％を返金
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -784,6 +784,9 @@ export default function ApplyPage() {
                 </p>
                 <p>
                   <strong>定員：</strong>各回8名（超少人数制）
+                </p>
+                <p>
+                  <strong>最低開催人数：</strong>3名
                 </p>
                 <p>
                   <strong>講師：</strong>2名体制で手厚くサポート

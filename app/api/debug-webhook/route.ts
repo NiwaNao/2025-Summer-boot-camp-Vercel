@@ -6,34 +6,18 @@ export async function POST(request: NextRequest) {
     const applicationData = await request.json()
     console.log("受信したデータ:", JSON.stringify(applicationData, null, 2))
 
-    // 簡単なテスト用メール送信
-    const RESEND_API_KEY = "re_EnppcCwL_N6fuktQnJRxmEk2aPa235gat"
-
-    const emailPayload = {
-      from: "TOWA <onboarding@resend.dev>",
-      to: ["info@towa-ai.com"],
-      subject: `【デバッグ】申し込みテスト - ${applicationData.attendeeName}様`,
-      text: `デバッグ用メール送信テスト\n\n申込者: ${applicationData.attendeeName}\nメール: ${applicationData.email}\n料金: ¥${applicationData.price}`,
-      html: `<p>デバッグ用メール送信テスト</p><p>申込者: ${applicationData.attendeeName}<br>メール: ${applicationData.email}<br>料金: ¥${applicationData.price}</p>`,
-    }
-
-    console.log("メール送信開始...")
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(emailPayload),
-    })
-
-    const result = await response.json()
-    console.log("メール送信結果:", result)
+    // デバッグ用のログ出力
+    console.log("--- デバッグ用メール内容 ---")
+    console.log(`宛先: info@towa-ai.com`)
+    console.log(`件名: 【デバッグ】申し込みテスト - ${applicationData.attendeeName}様`)
+    console.log(`内容: デバッグ用メール送信テスト`)
+    console.log(`申込者: ${applicationData.attendeeName}`)
+    console.log(`メール: ${applicationData.email}`)
+    console.log(`料金: ¥${applicationData.price}`)
 
     return NextResponse.json({
       success: true,
-      message: "デバッグWebhook処理完了",
-      emailResult: result,
+      message: "デバッグWebhook処理完了（ログ出力のみ）",
       receivedData: applicationData,
     })
   } catch (error) {
