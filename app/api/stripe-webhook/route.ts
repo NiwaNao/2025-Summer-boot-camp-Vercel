@@ -69,43 +69,75 @@ export async function POST(request: NextRequest) {
       console.log("Checkout Session:", session)
 
       // セッションから決済情報を取得
-      const paymentAmount = session.amount_total / 100 // セントから円に変換
+      const paymentAmount = session.amount_total // 日本円はセント単位ではない
       const customerEmail = session.customer_details?.email
       const customerName = session.customer_details?.name
 
       console.log(`決済完了: ${customerName} (${customerEmail}) - ¥${paymentAmount}`)
 
-      // 管理者向け決済完了通知メール
-      const adminNotificationContent = `
-Stripe決済が完了しました。
+      // 決済完了ログ出力
+      console.log("=== Stripe決済完了 ===")
+      console.log(`お名前: ${customerName || "未取得"}`)
+      console.log(`メールアドレス: ${customerEmail || "未取得"}`)
+      console.log(`決済金額: ¥${paymentAmount.toLocaleString()}`)
+      console.log(`決済日時: ${new Date().toLocaleString("ja-JP")}`)
+      console.log(`セッションID: ${session.id}`)
 
-【決済情報】
-お名前: ${customerName || "未取得"}
-メールアドレス: ${customerEmail || "未取得"}
-決済金額: ¥${paymentAmount.toLocaleString()}
-決済日時: ${new Date().toLocaleString("ja-JP")}
-セッションID: ${session.id}
+      // metadataから申込み情報を取得
+      const metadata = session.metadata || {}
+      console.log("Metadata:", metadata)
 
-※ 詳細な申込み情報は、決済完了ページから送信されます。
+      // 申込み情報を再構築
+      const applicationData = {
+        pricingType: metadata.pricingType,
+        discountType: metadata.discountType,
+        attendeeName: metadata.attendeeName,
+        email: metadata.email,
+        phone: metadata.phone,
+        company: metadata.company,
+        aiExperience: metadata.aiExperience,
+        motivation: metadata.motivation,
+        partnerName: metadata.partnerName,
+        partnerEmail: metadata.partnerEmail,
+        partnerPhone: metadata.partnerPhone,
+        selectedDate: metadata.selectedDate,
+        price: parseInt(metadata.price),
+        timestamp: metadata.timestamp,
+        privacyAgreed: true,
+        termsAgreed: true,
+      }
 
----
-TOWA Stripe Webhook通知
-      `
+      console.log("再構築した申込み情報:", applicationData)
 
-      // 管理者向けメール送信
-      const adminResult = await sendEmail(
-        process.env.GMAIL_USER || "info@towa-ai.com",
-        `【TOWA】Stripe決済完了 - ${customerName || "申込者"}様`,
-        adminNotificationContent
-      )
+      // 申込み情報を含むメール送信
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || "https://summer-bootcamp.towa-ai.com"}/api/webhook/application`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(applicationData),
+        })
 
-      console.log("管理者向け決済通知メール送信結果:", adminResult)
+        const emailResult = await response.json()
+        console.log("メール送信結果:", emailResult)
 
-      return NextResponse.json({
-        success: true,
-        message: "Webhook processed successfully",
-        emailResult: adminResult,
-      })
+        return NextResponse.json({
+          success: true,
+          message: "Webhook processed successfully with email sent",
+          paymentAmount: paymentAmount,
+          customerName: customerName,
+          customerEmail: customerEmail,
+          emailResult: emailResult,
+        })
+      } catch (error) {
+        console.error("メール送信エラー:", error)
+        return NextResponse.json({
+          success: false,
+          message: "メール送信に失敗しました",
+          error: String(error),
+        })
+      }
     }
 
     // その他のイベントは無視

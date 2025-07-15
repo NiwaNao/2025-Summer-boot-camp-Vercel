@@ -67,27 +67,27 @@ export default function ApplyPage() {
     return { price, originalPrice, discount: originalPrice - price }
   }
 
-  // Stripe Payment Linkの決定（成功時リダイレクトURL付き）
-  const getStripeLink = () => {
-    // 現在のドメインを取得
-    const baseUrl = typeof window !== "undefined" ? window.location.origin : "https://summer-bootcamp.towa-ai.com"
-    const successUrl = `${baseUrl}/payment-success`
+  // Stripe Checkout Sessionを作成
+  const createCheckoutSession = async (applicationData: any) => {
+    try {
+      const response = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(applicationData),
+      })
 
-    // 各Payment LinkにSuccess URLを追加
-    if (discountType === "pair") {
-      return `https://buy.stripe.com/aFaaEYfmTfuV1sZ5o54F203?success_url=${encodeURIComponent(successUrl)}`
-    } else if (discountType === "set") {
-      return `https://buy.stripe.com/5kQ14o5Mj0A1gnT3fX4F204?success_url=${encodeURIComponent(successUrl)}`
-    } else if (discountType === "single") {
-      if (pricingType === "early") {
-        return `https://buy.stripe.com/9B64gAgqXeqR2x3aIp4F201?success_url=${encodeURIComponent(successUrl)}`
-      } else {
-        return `https://buy.stripe.com/14A7sM8Yv82t8Vrg2J4F202?success_url=${encodeURIComponent(successUrl)}`
+      if (!response.ok) {
+        throw new Error("Checkout Session作成に失敗しました")
       }
-    } else if (discountType === "pair-set") {
-      return `https://buy.stripe.com/eVq6oIb6DgyZgnT17P4F205?success_url=${encodeURIComponent(successUrl)}`
+
+      const result = await response.json()
+      return result
+    } catch (error) {
+      console.error("Checkout Session作成エラー:", error)
+      throw error
     }
-    return ""
   }
 
   // Webhookにデータを送信する関数
@@ -141,6 +141,8 @@ export default function ApplyPage() {
     const { price } = calculatePrice()
 
     // 申し込み情報を作成
+    const baseUrl = typeof window !== "undefined" ? window.location.origin : "https://summer-bootcamp.towa-ai.com"
+    
     const applicationData = {
       pricingType,
       discountType,
@@ -158,21 +160,20 @@ export default function ApplyPage() {
       timestamp: new Date().toISOString(),
       privacyAgreed,
       termsAgreed,
+      baseUrl,
     }
 
     try {
-      // 決済前に情報を保存（決済完了後の処理用）
-      localStorage.setItem("towaApplication", JSON.stringify(applicationData))
-      console.log("申し込み情報をローカルストレージに保存:", applicationData)
+      console.log("申し込み処理開始:", applicationData)
 
-      // Stripe Payment Linkにリダイレクト
-      const stripeLink = getStripeLink()
-      console.log("リダイレクト先:", stripeLink)
+      // Stripe Checkout Sessionを作成
+      const session = await createCheckoutSession(applicationData)
+      console.log("Checkout Session作成成功:", session)
 
-      if (stripeLink) {
-        window.location.href = stripeLink
+      if (session.url) {
+        window.location.href = session.url
       } else {
-        alert("決済リンクの生成に失敗しました。")
+        alert("決済ページの生成に失敗しました。")
       }
     } catch (error) {
       console.error("申し込み処理エラー:", error)
