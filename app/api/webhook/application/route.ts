@@ -1,4 +1,16 @@
 import { type NextRequest, NextResponse } from "next/server"
+import nodemailer from "nodemailer"
+
+// Nodemailerの設定
+const createTransporter = () => {
+  return nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASSWORD
+    }
+  })
+}
 
 // 申込者向けお礼メールテンプレート
 function createThankYouEmailContent(applicationData: any) {
@@ -80,6 +92,26 @@ Email：info@towa-ai.com
 `
 }
 
+// Nodemailerでメール送信
+async function sendEmail(to: string, subject: string, text: string) {
+  try {
+    const transporter = createTransporter()
+    
+    const mailOptions = {
+      from: `${process.env.GMAIL_FROM_NAME} <${process.env.GMAIL_USER}>`,
+      to: to,
+      subject: subject,
+      text: text
+    }
+
+    const info = await transporter.sendMail(mailOptions)
+    return { success: true, messageId: info.messageId }
+  } catch (error) {
+    console.error('メール送信エラー:', error)
+    return { success: false, error: String(error) }
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     console.log("=== Webhook処理開始 ===")
@@ -154,41 +186,48 @@ Webhook URL: ${request.url}
     // 申込者向けお礼メールの内容
     const thankYouEmailContent = createThankYouEmailContent(applicationData)
 
-    // メール送信処理（ログ出力のみ）
+    // メール送信処理
     const emailResults = []
 
-    console.log("=== メール内容をログに出力 ===")
+    console.log("=== Nodemailerでメール送信開始 ===")
 
-    // 1. 運営側への通知メール内容をログ出力
-    console.log("--- 運営側メール内容 ---")
-    console.log(`宛先: info@towa-ai.com`)
-    console.log(`件名: 【TOWA】新しい申し込み - ${applicationData.attendeeName}様`)
-    console.log(`内容:\n${adminEmailContent}`)
-    emailResults.push({ type: "admin", success: true, message: "ログ出力完了" })
+    // 1. 運営側への通知メール送信
+    console.log("--- 運営側メール送信 ---")
+    const adminResult = await sendEmail(
+      process.env.GMAIL_USER || "info@towa-ai.com",
+      `【TOWA】新しい申し込み - ${applicationData.attendeeName}様`,
+      adminEmailContent
+    )
+    console.log("管理者メール送信結果:", adminResult)
+    emailResults.push({ type: "admin", ...adminResult })
 
-    // 2. 申込者へのお礼メール内容をログ出力
-    console.log("--- 申込者向けメール内容 ---")
-    console.log(`宛先: ${applicationData.email}`)
-    console.log(`件名: 【TOWA】お申し込みありがとうございます - ${applicationData.attendeeName}様`)
-    console.log(`内容:\n${thankYouEmailContent}`)
-    emailResults.push({ type: "applicant", success: true, message: "ログ出力完了" })
+    // 2. 申込者へのお礼メール送信
+    console.log("--- 申込者向けメール送信 ---")
+    const applicantResult = await sendEmail(
+      applicationData.email,
+      `【TOWA】お申し込みありがとうございます - ${applicationData.attendeeName}様`,
+      thankYouEmailContent
+    )
+    console.log("申込者メール送信結果:", applicantResult)
+    emailResults.push({ type: "applicant", ...applicantResult })
 
-    // 3. ペア受講者へのお礼メール内容をログ出力（該当する場合）
+    // 3. ペア受講者へのお礼メール送信（該当する場合）
     if (applicationData.partnerName && applicationData.partnerEmail) {
-      console.log("--- ペア受講者向けメール内容 ---")
+      console.log("--- ペア受講者向けメール送信 ---")
       const partnerThankYouContent = createThankYouEmailContent({
         ...applicationData,
         attendeeName: applicationData.partnerName,
         email: applicationData.partnerEmail,
       })
-      console.log(`宛先: ${applicationData.partnerEmail}`)
-      console.log(`件名: 【TOWA】お申し込みありがとうございます - ${applicationData.partnerName}様`)
-      console.log(`内容:\n${partnerThankYouContent}`)
-      emailResults.push({ type: "partner", success: true, message: "ログ出力完了" })
+      
+      const partnerResult = await sendEmail(
+        applicationData.partnerEmail,
+        `【TOWA】お申し込みありがとうございます - ${applicationData.partnerName}様`,
+        partnerThankYouContent
+      )
+      console.log("ペア受講者メール送信結果:", partnerResult)
+      emailResults.push({ type: "partner", ...partnerResult })
     }
-
-    // 4. Zapierのwebhookに送信（無効化：Stripe決済完了後のみ送信するため）
-    // await sendToZapier(applicationData, adminEmailContent, thankYouEmailContent)
 
     console.log("=== 全メール処理結果 ===")
     console.log("Email results:", emailResults)
@@ -198,7 +237,7 @@ Webhook URL: ${request.url}
 
     return NextResponse.json({
       success: true,
-      message: `申し込み情報を受信しました。メール処理: ${successCount}/${totalCount}件完了（ログ出力のみ）`,
+      message: `申し込み情報を受信しました。メール送信: ${successCount}/${totalCount}件完了`,
       emailResults: emailResults,
     })
   } catch (error) {
@@ -208,68 +247,5 @@ Webhook URL: ${request.url}
       { success: false, message: "申し込み情報の処理に失敗しました", error: String(error) },
       { status: 500 },
     )
-  }
-}
-
-// Zapierのwebhookに送信する関数
-async function sendToZapier(applicationData: any, adminEmailContent: string, thankYouEmailContent: string) {
-  try {
-    // ZapierのWebhook URLを環境変数から取得（設定後に使用）
-    const zapierWebhookUrl = process.env.ZAPIER_WEBHOOK_URL
-
-    if (!zapierWebhookUrl) {
-      console.log("ZapierのWebhook URLが設定されていません")
-      return
-    }
-
-    const zapierData = {
-      // 基本情報
-      attendeeName: applicationData.attendeeName,
-      attendeeEmail: applicationData.email,
-      attendeePhone: applicationData.phone,
-      company: applicationData.company || "",
-      
-      // 受講情報
-      selectedDate: applicationData.selectedDate,
-      price: applicationData.price,
-      pricingType: applicationData.pricingType,
-      discountType: applicationData.discountType,
-      aiExperience: applicationData.aiExperience,
-      motivation: applicationData.motivation,
-      
-      // ペア情報（該当する場合）
-      partnerName: applicationData.partnerName || "",
-      partnerEmail: applicationData.partnerEmail || "",
-      partnerPhone: applicationData.partnerPhone || "",
-      
-      // メール内容
-      adminEmailContent: adminEmailContent,
-      applicantEmailContent: thankYouEmailContent,
-      
-      // その他
-      timestamp: applicationData.timestamp,
-      privacyAgreed: applicationData.privacyAgreed,
-      termsAgreed: applicationData.termsAgreed,
-    }
-
-    console.log("=== Zapierにデータ送信 ===")
-    console.log("送信先:", zapierWebhookUrl)
-    console.log("送信データ:", JSON.stringify(zapierData, null, 2))
-
-    const response = await fetch(zapierWebhookUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(zapierData),
-    })
-
-    if (response.ok) {
-      console.log("✅ Zapierへの送信成功")
-    } else {
-      console.error("❌ Zapierへの送信失敗:", response.status, response.statusText)
-    }
-  } catch (error) {
-    console.error("❌ Zapier送信エラー:", error)
   }
 }
