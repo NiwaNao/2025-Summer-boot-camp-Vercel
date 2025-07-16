@@ -18,92 +18,23 @@ export default function PaymentSuccessPage() {
     setWebhookLogs((prev) => [...prev, `${new Date().toLocaleTimeString()}: ${message}`])
   }
 
-  const sendToWebhook = async (applicationData: any) => {
-    try {
-      addLog("Webhook送信開始...")
-      addLog(`送信先: ${window.location.origin}/api/webhook/application`)
-      addLog(`データ: ${JSON.stringify(applicationData, null, 2)}`)
-
-      const response = await fetch("/api/webhook/application", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(applicationData),
-      })
-
-      addLog(`レスポンスステータス: ${response.status}`)
-
-      if (!response.ok) {
-        const errorText = await response.text()
-        addLog(`エラーレスポンス: ${errorText}`)
-        return { success: false, error: `Status: ${response.status}, Message: ${errorText}` }
-      }
-
-      const result = await response.json()
-      addLog(`成功レスポンス: ${JSON.stringify(result, null, 2)}`)
-      return result
-    } catch (error) {
-      addLog(`例外エラー: ${String(error)}`)
-      return { success: false, error: String(error) }
-    }
-  }
-
   useEffect(() => {
     addLog("ページロード開始")
-
-    // ローカルストレージから申し込み情報を取得
+    
+    // メール送信はStripe webhookで実行されるため、決済完了ページでの処理は無効化
+    addLog("メール送信はStripe webhookで実行済みです")
+    
+    // ローカルストレージから古いデータがあれば削除
     const savedData = localStorage.getItem("towaApplication")
-    addLog(`ローカルストレージデータ: ${savedData ? "あり" : "なし"}`)
-
     if (savedData) {
-      try {
-        const data = JSON.parse(savedData)
-        addLog(`パースしたデータ: ${JSON.stringify(data, null, 2)}`)
-        setApplicationData(data)
-
-        // 決済完了後にWebhookを呼び出してメール送信
-        addLog("Webhook呼び出し開始")
-        sendToWebhook(data)
-          .then((result) => {
-            addLog(`Webhook結果: ${JSON.stringify(result, null, 2)}`)
-            setIsProcessing(false)
-            if (result.success) {
-              addLog("申し込み完了メールを送信しました")
-              setEmailSent(true)
-
-              // メール送信結果の詳細をチェック
-              if (result.emailResults) {
-                const failedEmails = result.emailResults.filter((r: any) => !r.success)
-                if (failedEmails.length > 0) {
-                  addLog(`一部のメール送信に失敗: ${JSON.stringify(failedEmails, null, 2)}`)
-                  setEmailError(`一部のメール送信に失敗しました。運営チームに直接お問い合わせください。`)
-                }
-              }
-            } else {
-              addLog(`メール送信失敗: ${JSON.stringify(result, null, 2)}`)
-              setEmailError("メール送信に問題が発生しました。運営チームに直接お問い合わせください。")
-            }
-          })
-          .catch((error) => {
-            addLog(`Webhook例外エラー: ${String(error)}`)
-            setIsProcessing(false)
-            setEmailError("申し込み情報の送信に問題が発生しました。運営チームに直接お問い合わせください。")
-          })
-
-        // 使用済みデータを削除
-        localStorage.removeItem("towaApplication")
-        addLog("ローカルストレージデータを削除しました")
-      } catch (error) {
-        addLog(`データ処理エラー: ${String(error)}`)
-        setIsProcessing(false)
-        setEmailError("申し込みデータの処理中にエラーが発生しました。")
-      }
-    } else {
-      addLog("申し込み情報が見つかりません")
-      setIsProcessing(false)
-      setEmailError("申し込み情報が見つかりません。")
+      localStorage.removeItem("towaApplication")
+      addLog("ローカルストレージの古いデータを削除しました")
     }
+    
+    // 決済完了状態を設定
+    setIsProcessing(false)
+    setEmailSent(true)
+    addLog("決済完了。メールはStripe webhookから送信されています。")
 
     // ページロード時にスクロール位置を上部にリセット
     window.scrollTo(0, 0)

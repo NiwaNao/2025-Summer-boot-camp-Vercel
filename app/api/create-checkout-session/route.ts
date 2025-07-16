@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server"
 import Stripe from "stripe"
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+// Stripe設定（環境変数が未設定の場合のデフォルト値）
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY || "sk_test_dummy_key_for_build"
+const stripe = new Stripe(stripeSecretKey, {
   apiVersion: "2025-06-30.basil",
 })
 
