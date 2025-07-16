@@ -13,7 +13,13 @@ const notoSansJP = Noto_Sans_JP({
 export const metadata: Metadata = {
   title: "TOWA - 札幌限定サマーブートキャンプ",
   description: "AIを活用したSNS運用と業務自動化を学ぶ1日集中講座",
-    generator: 'v0.dev'
+  generator: 'v0.dev',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
 }
 
 export default function RootLayout({
@@ -23,6 +29,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja" className={notoSansJP.variable}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      </head>
       <body className={notoSansJP.className}>{children}</body>
     </html>
   )

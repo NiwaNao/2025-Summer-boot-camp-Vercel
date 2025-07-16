@@ -64,10 +64,19 @@
   * {
     @apply border-border;
   }
+  
+  html {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-noto-sans-jp), sans-serif;
     font-weight: 400;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
   }
 
   h1,
@@ -94,5 +103,38 @@
 @layer utilities {
   .font-noto {
     font-family: var(--font-noto-sans-jp), sans-serif;
+  }
+  
+  /* スマホでの横ずれ防止 */
+  .mobile-safe {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  /* 長いテキストの改行強制 */
+  .break-words-force {
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+}
+
+/* モバイル専用の修正 */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 100%;
+  }
+  
+  /* 大きなテキストの調整 */
+  h1, h2, h3 {
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+  
+  /* フローティングボタンの調整 */
+  .fixed {
+    position: fixed !important;
   }
 }

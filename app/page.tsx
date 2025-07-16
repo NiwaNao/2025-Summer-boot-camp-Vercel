@@ -72,19 +72,19 @@ export default function HighConvertingLP() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen mobile-safe">
       {/* Header */}
       <header className="bg-white shadow-sm border-b relative z-10">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="text-2xl font-bold text-blue-900">TOWA</div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             <Link href="/about">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="text-xs md:text-sm px-2 md:px-4">
                 TOWAについて
               </Button>
             </Link>
             <Link href="/team">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="text-xs md:text-sm px-2 md:px-4">
                 About Us
               </Button>
             </Link>
@@ -94,9 +94,9 @@ export default function HighConvertingLP() {
 
       {/* Urgency Banner */}
       <div className="bg-red-600 text-white py-2 text-center relative z-10">
-        <div className="flex items-center justify-center gap-2 text-sm font-medium">
-          <Clock className="w-4 h-4" />
-          <span>
+        <div className="flex items-center justify-center gap-1 md:gap-2 text-xs md:text-sm font-medium px-2">
+          <Clock className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" />
+          <span className="break-words-force">
             早割終了まで残り: {timeLeft.days}日 {timeLeft.hours}時間 {timeLeft.minutes}分 {timeLeft.seconds}秒
           </span>
         </div>
@@ -123,15 +123,15 @@ export default function HighConvertingLP() {
             </Badge>
           </div>
 
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
-            <div className="bg-white/20 backdrop-blur-sm rounded-lg p-8">
+          <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight drop-shadow-2xl break-words-force">
+            <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4 md:p-8">
               SNSの発信、つづいてますか？
               <br />
-              <span className="text-xl md:text-2xl lg:text-3xl">
+              <span className="text-lg md:text-2xl lg:text-3xl">
                 業務に追われて、本当にやりたいことができていますか？
               </span>
               <br />
-              <span className="text-blue-100 text-lg md:text-xl lg:text-2xl mt-4 block">
+              <span className="text-blue-100 text-base md:text-xl lg:text-2xl mt-4 block">
                 札幌限定｜AIで「発信」も「業務」も効率化できる1日集中講座
               </span>
             </div>
@@ -611,16 +611,16 @@ export default function HighConvertingLP() {
 { date: "8月30日（土）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
 { date: "8月31日（日）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
               ].map((session, index) => (
-                <div key={index} className="p-6 hover:bg-gray-50 transition-colors">
-                  <div className="grid md:grid-cols-3 gap-4 items-center">
-                    <div className="flex items-center gap-3">
-                      <Calendar className="w-6 h-6 text-blue-600" />
-                      <span className="font-bold text-lg text-gray-900">{session.date}</span>
+                <div key={index} className="p-4 md:p-6 hover:bg-gray-50 transition-colors">
+                  <div className="grid md:grid-cols-3 gap-2 md:gap-4 items-center">
+                    <div className="flex items-center gap-2 md:gap-3">
+                      <Calendar className="w-5 h-5 md:w-6 md:h-6 text-blue-600 flex-shrink-0" />
+                      <span className="font-bold text-base md:text-lg text-gray-900 break-words-force">{session.date}</span>
                     </div>
-                    <div className="text-gray-700">{session.course}</div>
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-5 h-5 text-green-600" />
-                      <Badge className="bg-blue-100 text-blue-800 font-mono">{session.time}</Badge>
+                    <div className="text-sm md:text-base text-gray-700 break-words-force">{session.course}</div>
+                    <div className="flex items-center gap-1 md:gap-2">
+                      <Clock className="w-4 h-4 md:w-5 md:h-5 text-green-600 flex-shrink-0" />
+                      <Badge className="bg-blue-100 text-blue-800 font-mono text-xs md:text-sm">{session.time}</Badge>
                     </div>
                   </div>
                 </div>
@@ -1179,10 +1179,10 @@ export default function HighConvertingLP() {
       </footer>
 
       {/* Floating CTA */}
-      <div className="fixed bottom-4 right-4 z-50">
+      <div className="fixed bottom-4 right-2 md:right-4 z-50">
         <Link href="/apply">
-          <Button className="bg-blue-900 hover:bg-blue-800 text-white px-6 py-3 rounded-full shadow-lg animate-pulse flex items-center gap-2">
-            <Target className="w-4 h-4" />
+          <Button className="bg-blue-900 hover:bg-blue-800 text-white px-4 md:px-6 py-2 md:py-3 rounded-full shadow-lg animate-pulse flex items-center gap-1 md:gap-2 text-sm md:text-base">
+            <Target className="w-3 h-3 md:w-4 md:h-4" />
             申し込む
           </Button>
         </Link>
