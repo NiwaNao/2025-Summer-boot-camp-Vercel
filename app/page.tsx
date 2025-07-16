@@ -135,15 +135,15 @@ export default function HighConvertingLP() {
         <div className="absolute inset-0 bg-black/10"></div>
 
         <div className="container mx-auto text-center max-w-4xl relative z-10">
-          <div className="flex justify-center mb-6">
-            <Badge className="bg-red-100/90 text-red-800 px-4 py-2 text-lg font-semibold backdrop-blur-sm flex items-center gap-2">
-              <Flame className="w-5 h-5" />
+          <div className="flex justify-center mb-6 animate-bounce-gentle">
+            <Badge className="bg-red-100/90 text-red-800 px-4 py-2 text-lg font-semibold backdrop-blur-sm flex items-center gap-2 shadow-lg">
+              <Flame className="w-5 h-5 animate-pulse" />
               札幌限定 | 各回8名の超少人数制
             </Badge>
           </div>
 
-          <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight drop-shadow-2xl break-words-force">
-            <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4 md:p-8">
+          <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight drop-shadow-2xl break-words-force animate-float">
+            <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4 md:p-8 shadow-xl">
               SNSの発信、つづいてますか？
               <br />
               <span className="text-lg md:text-2xl lg:text-3xl">
@@ -156,7 +156,7 @@ export default function HighConvertingLP() {
             </div>
           </h1>
 
-          <div className="bg-black/30 backdrop-blur-sm rounded-lg p-6 mb-8">
+          <div className="bg-black/30 backdrop-blur-sm rounded-lg p-6 mb-8 animate-fade-in-up shadow-lg">
             <p className="text-base md:text-lg text-white leading-relaxed">
               選べる2講座（SNS運用／業務自動化）で、あなたの課題にピンポイントでアプローチ。
               <br />
@@ -166,11 +166,11 @@ export default function HighConvertingLP() {
             </p>
           </div>
 
-          <div className="flex justify-center mb-12">
+          <div className="flex justify-center mb-12 animate-scale-pulse">
             <Link href="/line-consultation">
               <Button
                 size="lg"
-                className="bg-blue-900 hover:bg-blue-800 text-white px-8 py-4 text-lg font-semibold shadow-lg transform hover:scale-105 transition-all flex items-center gap-2 w-full sm:w-auto"
+                className="bg-blue-900 hover:bg-blue-800 text-white px-8 py-4 text-lg font-semibold shadow-xl transform hover:scale-110 transition-all flex items-center gap-2 w-full sm:w-auto"
               >
                 <MessageCircle className="w-5 h-5" />
                 LINEで相談する
@@ -179,15 +179,15 @@ export default function HighConvertingLP() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 text-sm text-white">
-            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-4 py-2">
+            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-4 py-2 animate-bounce-slow hover:bg-white/40 transition-all cursor-pointer shadow-lg">
               <Users className="w-5 h-5 text-purple-200" />
               <span>各回8名の超少人数制</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-4 py-2">
+            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-4 py-2 animate-bounce-slow hover:bg-white/40 transition-all cursor-pointer shadow-lg" style={{ animationDelay: '0.5s' }}>
               <BookOpen className="w-5 h-5 text-blue-200" />
               <span>講師2名で手厚くサポート</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-4 py-2">
+            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-4 py-2 animate-bounce-slow hover:bg-white/40 transition-all cursor-pointer shadow-lg" style={{ animationDelay: '1s' }}>
               <CheckCircle className="w-5 h-5 text-green-200" />
               <span>実践的なカリキュラム</span>
             </div>
@@ -1198,9 +1198,9 @@ export default function HighConvertingLP() {
       </footer>
 
       {/* Floating CTA */}
-      <div className="fixed bottom-4 right-2 md:right-4 z-50">
+      <div className="fixed bottom-4 right-2 md:right-4 z-50 animate-bounce-gentle">
         <Link href="/apply">
-          <Button className="bg-blue-900 hover:bg-blue-800 text-white px-4 md:px-6 py-2 md:py-3 rounded-full shadow-lg animate-pulse flex items-center gap-1 md:gap-2 text-sm md:text-base">
+          <Button className="bg-blue-900 hover:bg-blue-800 text-white px-4 md:px-6 py-2 md:py-3 rounded-full shadow-xl animate-scale-pulse flex items-center gap-1 md:gap-2 text-sm md:text-base hover:shadow-2xl transition-all">
             <Target className="w-3 h-3 md:w-4 md:h-4" />
             申し込む
           </Button>

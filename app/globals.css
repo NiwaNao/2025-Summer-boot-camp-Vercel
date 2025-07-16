@@ -117,6 +117,75 @@
     word-break: break-word;
     hyphens: auto;
   }
+
+  /* カスタムバウンスアニメーション */
+  .animate-bounce-gentle {
+    animation: bounce-gentle 2s infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 3s infinite;
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+  }
+
+  .animate-scale-pulse {
+    animation: scale-pulse 2s ease-in-out infinite;
+  }
+}
+
+/* キーフレームアニメーション */
+@keyframes bounce-gentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.02);
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 /* モバイル専用の修正 */
@@ -136,5 +205,12 @@
   /* フローティングボタンの調整 */
   .fixed {
     position: fixed !important;
+  }
+
+  /* モバイルではアニメーションを控えめに */
+  .animate-bounce-gentle,
+  .animate-bounce-slow,
+  .animate-float {
+    animation-duration: 4s;
   }
 }
