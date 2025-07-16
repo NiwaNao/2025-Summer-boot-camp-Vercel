@@ -166,7 +166,7 @@ export default function HighConvertingLP() {
             </p>
           </div>
 
-          <div className="flex justify-center mb-12 animate-scale-pulse">
+          <div className="flex justify-center mb-12">
             <Link href="/line-consultation">
               <Button
                 size="lg"
