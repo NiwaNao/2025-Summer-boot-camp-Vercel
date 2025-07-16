@@ -31,9 +31,10 @@ export default function PaymentSuccessPage() {
       addLog("ローカルストレージの古いデータを削除しました")
     }
     
-    // 決済完了状態を設定
+    // 決済完了状態を設定（申し込み情報表示はスキップ）
     setIsProcessing(false)
     setEmailSent(true)
+    setApplicationData({ success: true }) // 成功状態をセット
     addLog("決済完了。メールはStripe webhookから送信されています。")
 
     // ページロード時にスクロール位置を上部にリセット
@@ -149,51 +150,71 @@ export default function PaymentSuccessPage() {
           </Card>
         )}
 
-        <Card className="shadow-lg mb-8">
-          <CardHeader className="bg-green-600 text-white">
-            <CardTitle className="text-center">申し込み内容確認</CardTitle>
-          </CardHeader>
-          <CardContent className="p-8">
-            <div className="space-y-4">
-              <div className="flex justify-between items-center border-b pb-2">
-                <span className="font-semibold">料金タイプ</span>
-                <span>{applicationData.pricingType === "early" ? "早割価格" : "通常価格"}</span>
-              </div>
-              <div className="flex justify-between items-center border-b pb-2">
-                <span className="font-semibold">割引オプション</span>
-                <span>
-                  {applicationData.discountType === "single"
-                    ? "通常申し込み"
-                    : applicationData.discountType === "pair"
-                      ? "ペア割"
-                      : applicationData.discountType === "set"
-                        ? "2日間セット割"
-                        : applicationData.discountType === "pair-set"
-                          ? "2日間セット割 + ペア割"
-                          : ""}
-                </span>
-              </div>
-              <div className="flex justify-between items-center border-b pb-2">
-                <span className="font-semibold">受講者名</span>
-                <span>{applicationData.attendeeName}</span>
-              </div>
-              {applicationData.partnerName && (
+        {/* 申し込み詳細情報がある場合のみ表示 */}
+        {applicationData && applicationData.attendeeName && (
+          <Card className="shadow-lg mb-8">
+            <CardHeader className="bg-green-600 text-white">
+              <CardTitle className="text-center">申し込み内容確認</CardTitle>
+            </CardHeader>
+            <CardContent className="p-8">
+              <div className="space-y-4">
                 <div className="flex justify-between items-center border-b pb-2">
-                  <span className="font-semibold">ペア受講者名</span>
-                  <span>{applicationData.partnerName}</span>
+                  <span className="font-semibold">料金タイプ</span>
+                  <span>{applicationData.pricingType === "early" ? "早割価格" : "通常価格"}</span>
                 </div>
-              )}
-              <div className="flex justify-between items-center border-b pb-2">
-                <span className="font-semibold">受講希望日</span>
-                <span>{applicationData.selectedDate}</span>
+                <div className="flex justify-between items-center border-b pb-2">
+                  <span className="font-semibold">割引オプション</span>
+                  <span>
+                    {applicationData.discountType === "single"
+                      ? "通常申し込み"
+                      : applicationData.discountType === "pair"
+                        ? "ペア割"
+                        : applicationData.discountType === "set"
+                          ? "2日間セット割"
+                          : applicationData.discountType === "pair-set"
+                            ? "2日間セット割 + ペア割"
+                            : ""}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center border-b pb-2">
+                  <span className="font-semibold">受講者名</span>
+                  <span>{applicationData.attendeeName}</span>
+                </div>
+                {applicationData.partnerName && (
+                  <div className="flex justify-between items-center border-b pb-2">
+                    <span className="font-semibold">ペア受講者名</span>
+                    <span>{applicationData.partnerName}</span>
+                  </div>
+                )}
+                <div className="flex justify-between items-center border-b pb-2">
+                  <span className="font-semibold">受講希望日</span>
+                  <span>{applicationData.selectedDate}</span>
+                </div>
+                <div className="flex justify-between items-center text-xl font-bold text-green-600">
+                  <span>決済金額</span>
+                  <span>¥{applicationData.price.toLocaleString()}</span>
+                </div>
               </div>
-              <div className="flex justify-between items-center text-xl font-bold text-green-600">
-                <span>決済金額</span>
-                <span>¥{applicationData.price.toLocaleString()}</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* 決済成功時の一般的なメッセージ */}
+        {applicationData && !applicationData.attendeeName && (
+          <Card className="shadow-lg mb-8">
+            <CardHeader className="bg-green-600 text-white">
+              <CardTitle className="text-center">お申し込み完了</CardTitle>
+            </CardHeader>
+            <CardContent className="p-8 text-center">
+              <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-gray-900 mb-4">決済が正常に完了しました</h3>
+              <p className="text-gray-600">
+                申し込み完了メールをお送りしています。<br/>
+                詳細な申し込み内容については、メールをご確認ください。
+              </p>
+            </CardContent>
+          </Card>
+        )}
 
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           <Card className="bg-blue-50 border-blue-200">
