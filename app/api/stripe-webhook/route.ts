@@ -122,14 +122,14 @@ export async function POST(request: NextRequest) {
         const emailResult = await response.json()
         console.log("メール送信結果:", emailResult)
 
-        return NextResponse.json({
-          success: true,
+      return NextResponse.json({
+        success: true,
           message: "Webhook processed successfully with email sent",
           paymentAmount: paymentAmount,
           customerName: customerName,
           customerEmail: customerEmail,
           emailResult: emailResult,
-        })
+      })
       } catch (error) {
         console.error("メール送信エラー:", error)
         return NextResponse.json({
