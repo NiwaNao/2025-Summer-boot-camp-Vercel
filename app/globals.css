@@ -161,7 +161,9 @@
     overflow: hidden;
     border-right: 3px solid rgba(255, 165, 0, 0.8);
     white-space: nowrap;
-    animation: typewriter 3s steps(40, end), blink-caret 0.75s step-end infinite;
+    width: 0;
+    animation: typewriter 4s steps(28, end) forwards, blink-caret 0.75s step-end infinite;
+    display: inline-block;
   }
 
   .animate-bounce-cta {
