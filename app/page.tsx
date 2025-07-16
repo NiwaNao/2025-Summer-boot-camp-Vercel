@@ -38,10 +38,14 @@ export default function HighConvertingLP() {
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      // 早割終了日時: 2024年7月31日 23:59:59
-      const endDate = new Date('2024-07-31T23:59:59')
+      // 早割終了日時: 2024年7月31日 23:59:59 (JST)
+      const endDate = new Date(2024, 6, 31, 23, 59, 59) // 月は0から始まるので7月=6
       const now = new Date()
       const difference = endDate.getTime() - now.getTime()
+
+      console.log('Current time:', now.toString())
+      console.log('End date:', endDate.toString())
+      console.log('Difference in ms:', difference)
 
       if (difference > 0) {
         const days = Math.floor(difference / (1000 * 60 * 60 * 24))
@@ -49,6 +53,7 @@ export default function HighConvertingLP() {
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
         const seconds = Math.floor((difference % (1000 * 60)) / 1000)
 
+        console.log('Calculated time left:', { days, hours, minutes, seconds })
         return { days, hours, minutes, seconds }
       } else {
         return { days: 0, hours: 0, minutes: 0, seconds: 0 }
