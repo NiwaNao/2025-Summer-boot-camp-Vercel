@@ -179,15 +179,15 @@ export default function HighConvertingLP() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 text-sm text-white">
-            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-4 py-2 animate-bounce-slow hover:bg-white/40 transition-all cursor-pointer shadow-lg">
+            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-4 py-2 hover:bg-white/40 transition-all cursor-pointer shadow-lg">
               <Users className="w-5 h-5 text-purple-200" />
               <span>各回8名の超少人数制</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-4 py-2 animate-bounce-slow hover:bg-white/40 transition-all cursor-pointer shadow-lg" style={{ animationDelay: '0.5s' }}>
+            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-4 py-2 hover:bg-white/40 transition-all cursor-pointer shadow-lg">
               <BookOpen className="w-5 h-5 text-blue-200" />
               <span>講師2名で手厚くサポート</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-4 py-2 animate-bounce-slow hover:bg-white/40 transition-all cursor-pointer shadow-lg" style={{ animationDelay: '1s' }}>
+            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-4 py-2 hover:bg-white/40 transition-all cursor-pointer shadow-lg">
               <CheckCircle className="w-5 h-5 text-green-200" />
               <span>実践的なカリキュラム</span>
             </div>
@@ -212,16 +212,27 @@ export default function HighConvertingLP() {
               "AIツールは知ってるけど、使い方が分からない",
               "売上アップの方法が分からず、現状維持が精一杯",
               "時間をかけても成果が出ない作業ばかり",
-            ].map((problem, index) => (
-              <Card key={index} className="border-l-4 border-l-blue-500 bg-white">
-                <CardContent className="p-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-700">{problem}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+            ].map((problem, index) => {
+              // 左側のカードは左からスライドイン、右側のカードは右からスライドイン
+              const isLeftColumn = index % 2 === 0
+              const slideDirection = isLeftColumn ? 'animate-slide-in-left' : 'animate-slide-in-right'
+              const delay = index * 0.2 // 0.2秒ずつ遅延
+              
+              return (
+                <Card 
+                  key={index} 
+                  className={`border-l-4 border-l-blue-500 bg-white hover:shadow-lg transition-shadow ${slideDirection}`}
+                  style={{ animationDelay: `${delay}s` }}
+                >
+                  <CardContent className="p-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-gray-700">{problem}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              )
+            })}
           </div>
 
           <div className="text-center">
@@ -363,63 +374,63 @@ export default function HighConvertingLP() {
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+            <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer group">
               <CardContent className="p-8">
                 <div className="text-center mb-6">
-                  <Badge className="bg-blue-600 text-white px-4 py-2 text-lg font-bold mb-4">
+                  <Badge className="bg-blue-600 text-white px-4 py-2 text-lg font-bold mb-4 group-hover:bg-blue-500 transition-colors">
                     ① AI × SNS運用講座（1日）
                   </Badge>
                 </div>
-                <p className="text-white mb-6 leading-relaxed">
+                <p className="text-white mb-6 leading-relaxed group-hover:text-blue-100 transition-colors">
                   ChatGPTとCanva
                   AIで投稿作成を劇的に効率化。継続できる仕組みを1日で構築し、成果の出るSNS運用を実現します。
                 </p>
                 <ul className="space-y-3 text-white">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <li className="flex items-start gap-2 group-hover:text-blue-100 transition-colors">
+                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0 group-hover:text-green-300 transition-colors" />
                     <span>SNS発信に迷わない「投稿テーマテンプレート」</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <li className="flex items-start gap-2 group-hover:text-blue-100 transition-colors">
+                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0 group-hover:text-green-300 transition-colors" />
                     <span>Canva AIによる画像・投稿文の一括作成</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <li className="flex items-start gap-2 group-hover:text-blue-100 transition-colors">
+                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0 group-hover:text-green-300 transition-colors" />
                     <span>反応が取れる投稿構成の習得</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <li className="flex items-start gap-2 group-hover:text-blue-100 transition-colors">
+                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0 group-hover:text-green-300 transition-colors" />
                     <span>継続できるAI活用の仕組み作り</span>
                   </li>
                 </ul>
               </CardContent>
             </Card>
 
-            <Card id="gas-course" className="bg-white/10 backdrop-blur-sm border-white/20">
+            <Card id="gas-course" className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer group">
               <CardContent className="p-8">
                 <div className="text-center mb-6">
-                  <Badge className="bg-green-600 text-white px-4 py-2 text-lg font-bold mb-4">
+                  <Badge className="bg-green-600 text-white px-4 py-2 text-lg font-bold mb-4 group-hover:bg-green-500 transition-colors">
                     ② AI × GAS自動化講座（1日）
                   </Badge>
                 </div>
-                <p className="text-white mb-6 leading-relaxed">
+                <p className="text-white mb-6 leading-relaxed group-hover:text-green-100 transition-colors">
                   コーディング未経験でも大丈夫。生成AIとGASで予約・在庫管理などの業務を自動化し、自分専用システムを構築します。
                 </p>
                 <ul className="space-y-3 text-white">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <li className="flex items-start gap-2 group-hover:text-green-100 transition-colors">
+                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0 group-hover:text-green-300 transition-colors" />
                     <span>コピペで応用できる「自動化プロンプト集」</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <li className="flex items-start gap-2 group-hover:text-green-100 transition-colors">
+                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0 group-hover:text-green-300 transition-colors" />
                     <span>フォーム〜カレンダー連携の自動化技術</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <li className="flex items-start gap-2 group-hover:text-green-100 transition-colors">
+                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0 group-hover:text-green-300 transition-colors" />
                     <span>AIにコードを生成させる思考法を習得</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <li className="flex items-start gap-2 group-hover:text-green-100 transition-colors">
+                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0 group-hover:text-green-300 transition-colors" />
                     <span>自分専用の自動化システムを構築できる</span>
                   </li>
                 </ul>
@@ -442,7 +453,7 @@ export default function HighConvertingLP() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow">
+            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow animate-slide-in-left" style={{ animationDelay: '0.1s' }}>
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-blue-600" />
@@ -454,7 +465,7 @@ export default function HighConvertingLP() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow">
+            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow animate-slide-in-right" style={{ animationDelay: '0.2s' }}>
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <MessageCircle className="w-8 h-8 text-blue-600" />
@@ -466,7 +477,7 @@ export default function HighConvertingLP() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow">
+            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow animate-slide-in-left" style={{ animationDelay: '0.3s' }}>
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Target className="w-8 h-8 text-blue-600" />
@@ -478,7 +489,7 @@ export default function HighConvertingLP() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow">
+            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow animate-slide-in-right" style={{ animationDelay: '0.4s' }}>
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-blue-600" />
@@ -490,7 +501,7 @@ export default function HighConvertingLP() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow">
+            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow animate-slide-in-left" style={{ animationDelay: '0.5s' }}>
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-8 h-8 text-blue-600" />
@@ -502,7 +513,7 @@ export default function HighConvertingLP() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow">
+            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow animate-slide-in-right" style={{ animationDelay: '0.6s' }}>
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <MapPin className="w-8 h-8 text-blue-600" />
@@ -688,9 +699,9 @@ export default function HighConvertingLP() {
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* SNS Course Schedule */}
-            <Card className="bg-white shadow-lg">
-              <div className="bg-blue-600 text-white p-4">
-                <h3 className="text-xl font-bold text-center">① AI × SNS運用講座</h3>
+            <Card className="bg-white shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 group cursor-pointer">
+              <div className="bg-blue-600 group-hover:bg-blue-500 text-white p-4 transition-colors duration-300">
+                <h3 className="text-xl font-bold text-center group-hover:text-blue-100 transition-colors duration-300">① AI × SNS運用講座</h3>
               </div>
               <CardContent className="p-6">
                 <div className="space-y-6">
@@ -742,9 +753,9 @@ export default function HighConvertingLP() {
             </Card>
 
             {/* GAS Course Schedule */}
-            <Card className="bg-white shadow-lg">
-              <div className="bg-green-600 text-white p-4">
-                <h3 className="text-xl font-bold text-center">② AI × GAS自動化講座</h3>
+            <Card className="bg-white shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 group cursor-pointer">
+              <div className="bg-green-600 group-hover:bg-green-500 text-white p-4 transition-colors duration-300">
+                <h3 className="text-xl font-bold text-center group-hover:text-green-100 transition-colors duration-300">② AI × GAS自動化講座</h3>
               </div>
               <CardContent className="p-6">
                 <div className="space-y-6">
@@ -970,9 +981,9 @@ export default function HighConvertingLP() {
             </Card>
 
             {/* 早割価格 */}
-            <Card className="border-4 border-blue-600 relative transform scale-105">
+            <Card className="border-4 border-blue-600 relative transform scale-105 animate-glow-border">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <Badge className="bg-blue-600 text-white px-4 py-2 text-lg font-bold flex items-center gap-2">
+                <Badge className="bg-blue-600 text-white px-4 py-2 text-lg font-bold flex items-center gap-2 animate-badge-pulse">
                   <Flame className="w-4 h-4" />
                   早割実施中
                 </Badge>
@@ -1060,7 +1071,7 @@ export default function HighConvertingLP() {
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <h2 className="text-4xl font-bold mb-6 flex items-center justify-center gap-3">
             <Flame className="w-10 h-10 text-orange-400" />
-            今すぐ行動して、スキルアップしませんか？
+            <span className="animate-typewriter">今すぐ行動して、スキルアップしませんか？</span>
           </h2>
 
           <p className="text-xl mb-6 opacity-90">
@@ -1073,7 +1084,7 @@ export default function HighConvertingLP() {
             <Link href="/apply">
               <Button
                 size="lg"
-                className="bg-white text-blue-900 hover:bg-gray-100 px-12 py-6 text-xl font-bold shadow-xl transform hover:scale-105 transition-all flex items-center gap-2"
+                className="bg-white text-blue-900 hover:bg-gray-100 px-12 py-6 text-xl font-bold shadow-xl transform hover:scale-105 transition-all flex items-center gap-2 animate-bounce-cta"
               >
                 <Target className="w-6 h-6" />
                 今すぐ申し込む（早割価格）
@@ -1150,7 +1161,7 @@ export default function HighConvertingLP() {
             <Link href="/apply">
               <Button
                 size="lg"
-                className="bg-blue-900 hover:bg-blue-800 text-white px-12 py-6 text-xl font-bold shadow-xl transform hover:scale-105 transition-all mx-auto"
+                className="bg-blue-900 hover:bg-blue-800 text-white px-12 py-6 text-xl font-bold shadow-xl transform hover:scale-110 transition-all mx-auto animate-action-button"
               >
                 <div className="flex items-center justify-center gap-2">
                   <Rocket className="w-6 h-6" />

@@ -138,6 +138,40 @@
   .animate-scale-pulse {
     animation: scale-pulse 2s ease-in-out infinite;
   }
+
+  .animate-slide-in-left {
+    opacity: 0;
+    animation: slide-in-left 0.8s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    opacity: 0;
+    animation: slide-in-right 0.8s ease-out forwards;
+  }
+
+  .animate-glow-border {
+    animation: glow-border 2s ease-in-out infinite;
+  }
+
+  .animate-badge-pulse {
+    animation: badge-pulse 1.5s ease-in-out infinite;
+  }
+
+  .animate-typewriter {
+    overflow: hidden;
+    border-right: 3px solid rgba(255, 165, 0, 0.8);
+    white-space: nowrap;
+    animation: typewriter 3s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+
+  .animate-bounce-cta {
+    animation: bounce-cta 2s ease-in-out infinite;
+  }
+
+  .animate-action-button {
+    animation: action-bounce 2.5s ease-in-out infinite, action-glow 3s ease-in-out infinite;
+    transform-origin: center;
+  }
 }
 
 /* キーフレームアニメーション */
@@ -185,6 +219,99 @@
   }
   50% {
     transform: scale(1.05);
+  }
+}
+
+@keyframes slide-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glow-border {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(37, 99, 235, 0.6), 0 0 40px rgba(37, 99, 235, 0.3);
+  }
+}
+
+@keyframes badge-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgba(255, 165, 0, 0.8);
+  }
+}
+
+@keyframes bounce-cta {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  40% {
+    transform: translateY(-8px) scale(1.02);
+  }
+  60% {
+    transform: translateY(-4px) scale(1.01);
+  }
+}
+
+@keyframes action-bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  40% {
+    transform: translateY(-12px) scale(1.05);
+  }
+  60% {
+    transform: translateY(-6px) scale(1.03);
+  }
+}
+
+@keyframes action-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.4), 0 0 40px rgba(37, 99, 235, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(37, 99, 235, 0.8), 0 0 60px rgba(37, 99, 235, 0.4), 0 0 80px rgba(37, 99, 235, 0.2);
   }
 }
 
