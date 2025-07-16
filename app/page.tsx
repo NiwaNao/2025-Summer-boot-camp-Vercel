@@ -453,7 +453,7 @@ export default function HighConvertingLP() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow animate-slide-in-left" style={{ animationDelay: '0.1s' }}>
+            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow">
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-blue-600" />
@@ -465,7 +465,7 @@ export default function HighConvertingLP() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow animate-slide-in-right" style={{ animationDelay: '0.2s' }}>
+            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow">
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <MessageCircle className="w-8 h-8 text-blue-600" />
@@ -477,7 +477,7 @@ export default function HighConvertingLP() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow animate-slide-in-left" style={{ animationDelay: '0.3s' }}>
+            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow">
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Target className="w-8 h-8 text-blue-600" />
@@ -489,7 +489,7 @@ export default function HighConvertingLP() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow animate-slide-in-right" style={{ animationDelay: '0.4s' }}>
+            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow">
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-blue-600" />
@@ -501,7 +501,7 @@ export default function HighConvertingLP() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow animate-slide-in-left" style={{ animationDelay: '0.5s' }}>
+            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow">
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-8 h-8 text-blue-600" />
@@ -513,7 +513,7 @@ export default function HighConvertingLP() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow animate-slide-in-right" style={{ animationDelay: '0.6s' }}>
+            <Card className="bg-white shadow-lg border-0 hover:shadow-xl transition-shadow">
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <MapPin className="w-8 h-8 text-blue-600" />
@@ -1069,14 +1069,10 @@ export default function HighConvertingLP() {
       {/* Main CTA Section */}
       <section id="main-cta" className="py-20 bg-gradient-to-r from-blue-900 to-indigo-900 text-white">
         <div className="container mx-auto px-4 text-center max-w-4xl">
-          <div className="text-center mb-6">
-            <div className="flex items-center justify-center gap-3 mb-2">
-              <Flame className="w-10 h-10 text-orange-400" />
-            </div>
-            <h2 className="text-4xl font-bold">
-              <span className="animate-typewriter">今すぐ行動して、スキルアップしませんか？</span>
-            </h2>
-          </div>
+          <h2 className="text-4xl font-bold mb-6 flex items-center justify-center gap-3">
+            <Flame className="w-10 h-10 text-orange-400" />
+            今すぐ行動して、スキルアップしませんか？
+          </h2>
 
           <p className="text-xl mb-6 opacity-90">
             早割価格は、あと<strong>{timeLeft.days}日</strong>で終了します。

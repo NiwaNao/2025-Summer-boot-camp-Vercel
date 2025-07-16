@@ -139,15 +139,7 @@
     animation: scale-pulse 2s ease-in-out infinite;
   }
 
-  .animate-slide-in-left {
-    opacity: 0;
-    animation: slide-in-left 0.8s ease-out forwards;
-  }
 
-  .animate-slide-in-right {
-    opacity: 0;
-    animation: slide-in-right 0.8s ease-out forwards;
-  }
 
   .animate-glow-border {
     animation: glow-border 2s ease-in-out infinite;
@@ -157,14 +149,7 @@
     animation: badge-pulse 1.5s ease-in-out infinite;
   }
 
-  .animate-typewriter {
-    overflow: hidden;
-    border-right: 3px solid rgba(255, 165, 0, 0.8);
-    white-space: nowrap;
-    width: 0;
-    animation: typewriter 4s steps(28, end) forwards, blink-caret 0.75s step-end infinite;
-    display: inline-block;
-  }
+
 
   .animate-bounce-cta {
     animation: bounce-cta 2s ease-in-out infinite;
@@ -224,27 +209,7 @@
   }
 }
 
-@keyframes slide-in-left {
-  0% {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
 
-@keyframes slide-in-right {
-  0% {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
 
 @keyframes glow-border {
   0%, 100% {
@@ -266,23 +231,7 @@
   }
 }
 
-@keyframes typewriter {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
 
-@keyframes blink-caret {
-  from, to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: rgba(255, 165, 0, 0.8);
-  }
-}
 
 @keyframes bounce-cta {
   0%, 20%, 50%, 80%, 100% {
