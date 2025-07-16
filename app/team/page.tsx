@@ -135,7 +135,7 @@ export default function TeamPage() {
               <div className="bg-blue-600 text-white p-6 text-center">
                 <div className="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full border-4 border-white/30">
                   <Image
-                    src="/images/member-ken-photo.png"
+                    src="/images/member_ken_photo1.png"
                     alt="松永健二郎"
                     width={96}
                     height={96}
@@ -179,20 +179,20 @@ export default function TeamPage() {
                 <br />
                 札幌限定サマーブートキャンプで、実践的なスキルを身につけましょう。
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/apply">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Link href="/apply" className="w-full sm:w-auto">
                   <Button
                     size="lg"
-                    className="bg-blue-900 hover:bg-blue-800 text-white px-8 py-4 text-lg font-semibold flex items-center gap-2"
+                    className="bg-blue-900 hover:bg-blue-800 text-white px-8 py-4 text-lg font-semibold flex items-center gap-2 w-full sm:w-auto justify-center"
                   >
                     <Target className="w-5 h-5" />
                     講座に申し込む
                   </Button>
                 </Link>
-                <Link href="/line-consultation">
+                <Link href="/line-consultation" className="w-full sm:w-auto">
                   <Button
                     size="lg"
-                    className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg font-semibold flex items-center gap-2"
+                    className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg font-semibold flex items-center gap-2 w-full sm:w-auto justify-center"
                   >
                     <Users className="w-5 h-5" />
                     LINEで相談する
