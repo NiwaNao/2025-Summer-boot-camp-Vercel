@@ -27,8 +27,8 @@ import Link from "next/link"
 
 export default function HighConvertingLP() {
   const [timeLeft, setTimeLeft] = useState({
-    days: 23, // 7月8日から7月31日まで23日
-    hours: 16, // 残り時間を現実的に設定
+    days: 0,
+    hours: 0,
     minutes: 0,
     seconds: 0,
   })
@@ -37,20 +37,29 @@ export default function HighConvertingLP() {
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.seconds > 0) {
-          return { ...prev, seconds: prev.seconds - 1 }
-        } else if (prev.minutes > 0) {
-          return { ...prev, minutes: prev.minutes - 1, seconds: 59 }
-        } else if (prev.hours > 0) {
-          return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 }
-        } else if (prev.days > 0) {
-          return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 }
-        }
-        // カウントダウン終了時は0のまま維持
+    const calculateTimeLeft = () => {
+      // 早割終了日時: 2024年7月31日 23:59:59
+      const endDate = new Date('2024-07-31T23:59:59')
+      const now = new Date()
+      const difference = endDate.getTime() - now.getTime()
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24))
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000)
+
+        return { days, hours, minutes, seconds }
+      } else {
         return { days: 0, hours: 0, minutes: 0, seconds: 0 }
-      })
+      }
+    }
+
+    // 初期値を設定
+    setTimeLeft(calculateTimeLeft())
+
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft())
     }, 1000)
 
     return () => clearInterval(timer)
