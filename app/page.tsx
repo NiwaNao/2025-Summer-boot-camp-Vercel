@@ -259,104 +259,104 @@ export default function HighConvertingLP() {
 
       {/* Course Selection Guide - お悩みセクションの後に追加 */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
+        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
               <span className="text-blue-900">どちらの講座があなたにぴったり？</span>
             </h2>
-            <p className="text-lg text-gray-600">あなたの課題に合わせて、最適な講座をお選びください</p>
+            <p className="text-base sm:text-lg text-gray-600">あなたの課題に合わせて、最適な講座をお選びください</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-8">
             {/* SNS講座ガイド */}
             <Card className="bg-blue-50 border-2 border-blue-200 hover:shadow-xl transition-shadow">
-              <CardContent className="p-8">
-                <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <MessageCircle className="w-8 h-8 text-white" />
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <div className="text-center mb-4 sm:mb-6">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                    <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-blue-900 mb-2">SNSで困っている方</h3>
-                  <p className="text-blue-700">発信・マーケティングの課題を解決</p>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-blue-900 mb-2">SNSで困っている方</h3>
+                  <p className="text-sm sm:text-base text-blue-700">発信・マーケティングの課題を解決</p>
                 </div>
 
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">SNS投稿が続かない、ネタが思い浮かばない</span>
+                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <span className="text-sm sm:text-base text-gray-700">SNS投稿が続かない、ネタが思い浮かばない</span>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">投稿しても反応が少ない、集客につながらない</span>
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <span className="text-sm sm:text-base text-gray-700">投稿しても反応が少ない、集客につながらない</span>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">画像作成や文章作成に時間がかかりすぎる</span>
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <span className="text-sm sm:text-base text-gray-700">画像作成や文章作成に時間がかかりすぎる</span>
                   </div>
                 </div>
 
                 <div className="text-center">
                   <Button
                     size="lg"
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold w-full mb-4"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold w-full mb-3 sm:mb-4"
                     onClick={() => document.getElementById("sns-course")?.scrollIntoView({ behavior: "smooth" })}
                   >
                     AI × SNS運用講座の詳細を見る
                   </Button>
-                  <p className="text-sm text-blue-600">→ 継続できるSNS運用の仕組みを構築</p>
+                  <p className="text-xs sm:text-sm text-blue-600">→ 継続できるSNS運用の仕組みを構築</p>
                 </div>
               </CardContent>
             </Card>
 
             {/* GAS講座ガイド */}
             <Card className="bg-green-50 border-2 border-green-200 hover:shadow-xl transition-shadow">
-              <CardContent className="p-8">
-                <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Rocket className="w-8 h-8 text-white" />
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <div className="text-center mb-4 sm:mb-6">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                    <Rocket className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-green-900 mb-2">業務で困っている方</h3>
-                  <p className="text-green-700">日常業務の自動化で効率アップ</p>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-green-900 mb-2">業務で困っている方</h3>
+                  <p className="text-sm sm:text-base text-green-700">日常業務の自動化で効率アップ</p>
                 </div>
 
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">毎日の繰り返し作業に時間を取られている</span>
+                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 mt-1 flex-shrink-0" />
+                    <span className="text-sm sm:text-base text-gray-700">毎日の繰り返し作業に時間を取られている</span>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">予約管理や在庫管理が手作業で大変</span>
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 mt-1 flex-shrink-0" />
+                    <span className="text-sm sm:text-base text-gray-700">予約管理や在庫管理が手作業で大変</span>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">データ入力やメール送信を自動化したい</span>
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 mt-1 flex-shrink-0" />
+                    <span className="text-sm sm:text-base text-gray-700">データ入力やメール送信を自動化したい</span>
                   </div>
                 </div>
 
                 <div className="text-center">
                   <Button
                     size="lg"
-                    className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg font-semibold w-full mb-4"
+                    className="bg-green-600 hover:bg-green-700 text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold w-full mb-3 sm:mb-4"
                     onClick={() => document.getElementById("gas-course")?.scrollIntoView({ behavior: "smooth" })}
                   >
                     AI × GAS自動化講座の詳細を見る
                   </Button>
-                  <p className="text-sm text-green-600">→ 自分専用の自動化システムを構築</p>
+                  <p className="text-xs sm:text-sm text-green-600">→ 自分専用の自動化システムを構築</p>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          <div className="text-center mt-12">
-            <p className="text-gray-600 mb-6">どちらを選ぶか迷っている方は、LINEでお気軽にご相談ください</p>
-            <div className="flex justify-center">
-              <Link href="/line-consultation">
+          <div className="text-center mt-8 sm:mt-12">
+            <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">どちらを選ぶか迷っている方は、LINEでお気軽にご相談ください</p>
+            <div className="flex justify-center px-4">
+              <Link href="/line-consultation" className="w-full sm:w-auto max-w-sm">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-8 py-4 text-lg font-semibold bg-transparent flex items-center gap-2"
+                  className="border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold bg-transparent flex items-center gap-2 w-full justify-center"
                 >
-                  <MessageCircle className="w-5 h-5" />
+                  <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                   LINEで講座選びを相談する
                 </Button>
               </Link>
