@@ -261,7 +261,9 @@ export default function HighConvertingLP() {
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
               <span className="text-blue-900 whitespace-nowrap">どちらの講座があなたにぴったり？</span>
             </h2>
-            <p className="text-sm sm:text-base lg:text-lg text-gray-600 px-2">あなたの課題に合わせて、最適な講座をお選びください</p>
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600 px-2">
+              <span className="whitespace-nowrap">あなたの課題に合わせて、最適な講座をお選びください</span>
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4 sm:gap-8">
@@ -1068,9 +1070,11 @@ export default function HighConvertingLP() {
       {/* Main CTA Section */}
       <section id="main-cta" className="py-20 bg-gradient-to-r from-blue-900 to-indigo-900 text-white">
         <div className="container mx-auto px-4 text-center max-w-4xl">
-          <h2 className="text-4xl font-bold mb-6 flex items-center justify-center gap-3">
-            <Flame className="w-10 h-10 text-orange-400" />
-            今すぐ行動して、スキルアップしませんか？
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
+            <div className="flex items-center justify-center gap-2 sm:gap-3">
+              <Flame className="w-8 h-8 sm:w-10 sm:h-10 text-orange-400 flex-shrink-0" />
+              <span className="whitespace-nowrap">今すぐ行動して、スキルアップしませんか？</span>
+            </div>
           </h2>
 
           <p className="text-xl mb-6 opacity-90">
@@ -1150,10 +1154,9 @@ export default function HighConvertingLP() {
             </div>
           </div>
 
-          <p className="text-xl mb-8">
-            選択は、あなた次第です。
-            <br />
-            でも、<strong className="text-blue-400">行動できるチャンスは今だけ</strong>です。
+          <p className="text-lg sm:text-xl mb-8">
+            <span className="block mb-2">選択は、あなた次第です。</span>
+            <span className="whitespace-nowrap">でも、<strong className="text-blue-400">行動できるチャンスは今だけ</strong>です。</span>
           </p>
 
           <div className="text-center">
