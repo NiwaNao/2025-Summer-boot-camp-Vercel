@@ -200,7 +200,10 @@ export default function HighConvertingLP() {
         <div className="container mx-auto px-4 max-w-4xl">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12 text-gray-900">
             <span className="block mb-2">個人事業主、副業、店舗運営者…</span>
-            <span className="text-red-600 whitespace-nowrap">こんなお悩みを抱えて、手が止まっていませんか？</span>
+            <span className="text-red-600">
+              <span className="block sm:inline">こんなお悩みを抱えて、</span>
+              <span className="whitespace-nowrap">手が止まっていませんか？</span>
+            </span>
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6 mb-12">
@@ -237,8 +240,14 @@ export default function HighConvertingLP() {
           <div className="text-center">
             <p className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">
               <span className="block mb-2">でも、もう大丈夫です。</span>
-              <span className="text-blue-900 block mb-2 whitespace-nowrap">講師2名が8名の受講生を手厚くサポート。</span>
-              <span className="text-blue-900 whitespace-nowrap">AIの力で、これらの悩みを解決する方法を学べます！</span>
+              <span className="text-blue-900 block mb-2">
+                <span className="block sm:inline">講師2名が8名の受講生を</span>
+                <span className="whitespace-nowrap">手厚くサポート。</span>
+              </span>
+              <span className="text-blue-900">
+                <span className="block sm:inline">AIの力で、これらの悩みを</span>
+                <span className="whitespace-nowrap">解決する方法を学べます！</span>
+              </span>
             </p>
             <div className="flex justify-center">
               <Button
