@@ -178,18 +178,18 @@ export default function HighConvertingLP() {
             </Link>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-white">
-            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-4 py-2 hover:bg-white/40 transition-all cursor-pointer shadow-lg">
-              <Users className="w-5 h-5 text-purple-200" />
-              <span>各回8名の超少人数制</span>
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-6 text-sm text-white">
+            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 hover:bg-white/40 transition-all cursor-pointer shadow-lg">
+              <Users className="w-4 h-4 sm:w-5 sm:h-5 text-purple-200 flex-shrink-0" />
+              <span className="text-xs sm:text-sm whitespace-nowrap">各回8名の超少人数制</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-4 py-2 hover:bg-white/40 transition-all cursor-pointer shadow-lg">
-              <BookOpen className="w-5 h-5 text-blue-200" />
-              <span>講師2名で手厚くサポート</span>
+            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 hover:bg-white/40 transition-all cursor-pointer shadow-lg">
+              <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-blue-200 flex-shrink-0" />
+              <span className="text-xs sm:text-sm whitespace-nowrap">講師2名で手厚くサポート</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-4 py-2 hover:bg-white/40 transition-all cursor-pointer shadow-lg">
-              <CheckCircle className="w-5 h-5 text-green-200" />
-              <span>実践的なカリキュラム</span>
+            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 hover:bg-white/40 transition-all cursor-pointer shadow-lg">
+              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-200 flex-shrink-0" />
+              <span className="text-xs sm:text-sm whitespace-nowrap">実践的なカリキュラム</span>
             </div>
           </div>
         </div>
@@ -198,10 +198,9 @@ export default function HighConvertingLP() {
       {/* Problem Section - 問題提起を先に */}
       <section className="py-16 bg-blue-50">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
-            個人事業主、副業、店舗運営者…
-            <br />
-            <span className="text-red-600">こんなお悩みを抱えて、手が止まっていませんか？</span>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12 text-gray-900">
+            <span className="block mb-2">個人事業主、副業、店舗運営者…</span>
+            <span className="text-red-600 whitespace-nowrap">こんなお悩みを抱えて、手が止まっていませんか？</span>
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6 mb-12">
@@ -236,12 +235,10 @@ export default function HighConvertingLP() {
           </div>
 
           <div className="text-center">
-            <p className="text-xl font-semibold text-gray-900 mb-4">
-              でも、もう大丈夫です。
-              <br />
-              <span className="text-blue-900">講師2名が8名の受講生を手厚くサポート。</span>
-              <br />
-              <span className="text-blue-900">AIの力で、これらの悩みを解決する方法を学べます！</span>
+            <p className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">
+              <span className="block mb-2">でも、もう大丈夫です。</span>
+              <span className="text-blue-900 block mb-2 whitespace-nowrap">講師2名が8名の受講生を手厚くサポート。</span>
+              <span className="text-blue-900 whitespace-nowrap">AIの力で、これらの悩みを解決する方法を学べます！</span>
             </p>
             <div className="flex justify-center">
               <Button
@@ -261,10 +258,10 @@ export default function HighConvertingLP() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
-              <span className="text-blue-900">どちらの講座があなたにぴったり？</span>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+              <span className="text-blue-900 whitespace-nowrap">どちらの講座があなたにぴったり？</span>
             </h2>
-            <p className="text-base sm:text-lg text-gray-600">あなたの課題に合わせて、最適な講座をお選びください</p>
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600 px-2">あなたの課題に合わせて、最適な講座をお選びください</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4 sm:gap-8">
@@ -368,9 +365,11 @@ export default function HighConvertingLP() {
       {/* Course Selection - 問題提起の後に解決策を提示 */}
       <section id="sns-course" className="py-16 bg-blue-900 text-white">
         <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-3xl font-bold text-center mb-12 flex items-center justify-center gap-3">
-            <BookOpen className="w-8 h-8 text-white" />
-            2つの実践講座から選べます
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">
+            <div className="flex items-center justify-center gap-2 sm:gap-3">
+              <BookOpen className="w-6 h-6 sm:w-8 sm:h-8 text-white flex-shrink-0" />
+              <span className="whitespace-nowrap">2つの実践講座から選べます</span>
+            </div>
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -706,33 +705,33 @@ export default function HighConvertingLP() {
               <CardContent className="p-6">
                 <div className="space-y-6">
                   <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-bold text-blue-900">基礎理解とマインドセット</h4>
-                      <Badge className="bg-blue-100 text-blue-800 font-mono text-sm">10:00-12:00</Badge>
+                    <div className="flex items-center justify-between mb-2 gap-2">
+                      <h4 className="font-bold text-blue-900 text-sm sm:text-base whitespace-nowrap flex-shrink-0">基礎理解とマインドセット</h4>
+                      <Badge className="bg-blue-100 text-blue-800 font-mono text-xs sm:text-sm whitespace-nowrap flex-shrink-0">10:00-12:00</Badge>
                     </div>
                     <p className="text-gray-600 text-sm">
                       オリエンテーション、ChatGPTと生成AIの基本、SNS運用にAIが必要な理由と成功する思考法、発信が"続く人"になるマインドセットと仕組み化。
                     </p>
                   </div>
                   <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-bold text-blue-900">昼食休憩</h4>
-                      <Badge className="bg-blue-100 text-blue-800 font-mono text-sm">12:00-13:00</Badge>
+                    <div className="flex items-center justify-between mb-2 gap-2">
+                      <h4 className="font-bold text-blue-900 text-sm sm:text-base whitespace-nowrap flex-shrink-0">昼食休憩</h4>
+                      <Badge className="bg-blue-100 text-blue-800 font-mono text-xs sm:text-sm whitespace-nowrap flex-shrink-0">12:00-13:00</Badge>
                     </div>
                   </div>
                   <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-bold text-blue-900">投稿テーマ設計と文章生成</h4>
-                      <Badge className="bg-blue-100 text-blue-800 font-mono text-sm">13:00-14:30</Badge>
+                    <div className="flex items-center justify-between mb-2 gap-2">
+                      <h4 className="font-bold text-blue-900 text-sm sm:text-base whitespace-nowrap flex-shrink-0">投稿テーマ設計と文章生成</h4>
+                      <Badge className="bg-blue-100 text-blue-800 font-mono text-xs sm:text-sm whitespace-nowrap flex-shrink-0">13:00-14:30</Badge>
                     </div>
                     <p className="text-gray-600 text-sm">
                       ChatGPTを活用した投稿テーマの設計とテンプレート作成方法、X（旧Twitter）で『反応が取れる構成』の作り方、ABテストを見越したプロンプトの応用テクニック。
                     </p>
                   </div>
                   <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-bold text-blue-900">ビジュアルと一括作成</h4>
-                      <Badge className="bg-blue-100 text-blue-800 font-mono text-sm">14:30-15:30</Badge>
+                    <div className="flex items-center justify-between mb-2 gap-2">
+                      <h4 className="font-bold text-blue-900 text-sm sm:text-base whitespace-nowrap flex-shrink-0">ビジュアルと一括作成</h4>
+                      <Badge className="bg-blue-100 text-blue-800 font-mono text-xs sm:text-sm whitespace-nowrap flex-shrink-0">14:30-15:30</Badge>
                     </div>
                     <p className="text-gray-600 text-sm">
                       Canva Magic Studioを使った画像と投稿文の一括作成、主要SNS（X,
@@ -740,9 +739,9 @@ export default function HighConvertingLP() {
                     </p>
                   </div>
                   <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-bold text-blue-900">実践と継続プランニング</h4>
-                      <Badge className="bg-blue-100 text-blue-800 font-mono text-sm">15:30-16:50</Badge>
+                    <div className="flex items-center justify-between mb-2 gap-2">
+                      <h4 className="font-bold text-blue-900 text-sm sm:text-base whitespace-nowrap flex-shrink-0">実践と継続プランニング</h4>
+                      <Badge className="bg-blue-100 text-blue-800 font-mono text-xs sm:text-sm whitespace-nowrap flex-shrink-0">15:30-16:50</Badge>
                     </div>
                     <p className="text-gray-600 text-sm">
                       作成した投稿の相互添削と改善ワーク、日々の運用を効率化する計画、まとめと『これからの継続プラン』の策定。
@@ -760,42 +759,42 @@ export default function HighConvertingLP() {
               <CardContent className="p-6">
                 <div className="space-y-6">
                   <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-bold text-green-900">生成AIとGASの基礎</h4>
-                      <Badge className="bg-green-100 text-green-800 font-mono text-sm">10:00-12:00</Badge>
+                    <div className="flex items-center justify-between mb-2 gap-2">
+                      <h4 className="font-bold text-green-900 text-sm sm:text-base whitespace-nowrap flex-shrink-0">生成AIとGASの基礎</h4>
+                      <Badge className="bg-green-100 text-green-800 font-mono text-xs sm:text-sm whitespace-nowrap flex-shrink-0">10:00-12:00</Badge>
                     </div>
                     <p className="text-gray-600 text-sm">
                       オリエンテーション、GeminiとChatGPTの違い、Geminiを使ったスプレッドシート+GAS設計体験を学びます。
                     </p>
                   </div>
                   <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-bold text-green-900">昼食休憩</h4>
-                      <Badge className="bg-green-100 text-green-800 font-mono text-sm">12:00-13:00</Badge>
+                    <div className="flex items-center justify-between mb-2 gap-2">
+                      <h4 className="font-bold text-green-900 text-sm sm:text-base whitespace-nowrap flex-shrink-0">昼食休憩</h4>
+                      <Badge className="bg-green-100 text-green-800 font-mono text-xs sm:text-sm whitespace-nowrap flex-shrink-0">12:00-13:00</Badge>
                     </div>
                   </div>
                   <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-bold text-green-900">実践①：在庫管理システムの構築</h4>
-                      <Badge className="bg-green-100 text-green-800 font-mono text-sm">13:00-14:30</Badge>
+                    <div className="flex items-center justify-between mb-2 gap-2">
+                      <h4 className="font-bold text-green-900 text-sm sm:text-base whitespace-nowrap flex-shrink-0">実践①：在庫管理システムの構築</h4>
+                      <Badge className="bg-green-100 text-green-800 font-mono text-xs sm:text-sm whitespace-nowrap flex-shrink-0">13:00-14:30</Badge>
                     </div>
                     <p className="text-gray-600 text-sm">
                       GASで在庫管理システムを作成。自動入力、在庫アラート付きシート、トリガー設定による自動実行などを実装します。
                     </p>
                   </div>
                   <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-bold text-green-900">実践②：予約システムの自動化</h4>
-                      <Badge className="bg-green-100 text-green-800 font-mono text-sm">14:30-16:30</Badge>
+                    <div className="flex items-center justify-between mb-2 gap-2">
+                      <h4 className="font-bold text-green-900 text-sm sm:text-base whitespace-nowrap flex-shrink-0">実践②：予約システムの自動化</h4>
+                      <Badge className="bg-green-100 text-green-800 font-mono text-xs sm:text-sm whitespace-nowrap flex-shrink-0">14:30-16:30</Badge>
                     </div>
                     <p className="text-gray-600 text-sm">
                       プロジェクト形式で『喫茶店の予約自動化』に挑戦。Googleフォームとカレンダーを連携し、Gemini×GASで予約受付からメールの自動送信までを実装します。
                     </p>
                   </div>
                   <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-bold text-green-900">応用と発展</h4>
-                      <Badge className="bg-green-100 text-green-800 font-mono text-sm">16:30-17:50</Badge>
+                    <div className="flex items-center justify-between mb-2 gap-2">
+                      <h4 className="font-bold text-green-900 text-sm sm:text-base whitespace-nowrap flex-shrink-0">応用と発展</h4>
+                      <Badge className="bg-green-100 text-green-800 font-mono text-xs sm:text-sm whitespace-nowrap flex-shrink-0">16:30-17:50</Badge>
                     </div>
                     <p className="text-gray-600 text-sm">
                       LINE Messaging
