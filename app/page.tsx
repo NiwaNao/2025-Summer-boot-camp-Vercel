@@ -879,9 +879,9 @@ export default function HighConvertingLP() {
                           {faq.question}
                         </h3>
                         {openFAQ === index ? (
-                          <Minus className="w-5 h-5 text-blue-600" />
+                          <Minus className="w-8 h-8 text-blue-600" />
                         ) : (
-                          <Plus className="w-5 h-5 text-blue-600" />
+                          <Plus className="w-8 h-8 text-blue-600" />
                         )}
                       </div>
                     </div>
