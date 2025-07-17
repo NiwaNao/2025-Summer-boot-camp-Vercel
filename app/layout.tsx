@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Noto_Sans_JP } from "next/font/google"
+import Script from "next/script"
 import "./globals.css"
 
 const notoSansJP = Noto_Sans_JP({
@@ -32,7 +33,22 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
-      <body className={notoSansJP.className}>{children}</body>
+      <body className={notoSansJP.className}>
+        {/* Google Analytics */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-CB068FZWB3`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-CB068FZWB3');
+          `}
+        </Script>
+        {children}
+      </body>
     </html>
   )
 }
