@@ -701,20 +701,20 @@ export default function HighConvertingLP() {
 
       {/* Detailed Schedule Sections */}
       <section className="py-16 bg-blue-50">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 flex items-center justify-center gap-3">
-            <ClipboardList className="w-8 h-8 text-blue-900" />
+        <div className="container mx-auto px-2 sm:px-4 max-w-6xl">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-gray-900 flex items-center justify-center gap-3">
+            <ClipboardList className="w-6 h-6 sm:w-8 sm:h-8 text-blue-900" />
             <span className="text-blue-900">詳細スケジュール</span>
           </h2>
 
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-4 lg:gap-8">
             {/* SNS Course Schedule */}
-            <Card className="bg-white shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 group cursor-pointer">
-              <div className="bg-blue-600 group-hover:bg-blue-500 text-white p-4 transition-colors duration-300">
-                <h3 className="text-xl font-bold text-center group-hover:text-blue-100 transition-colors duration-300">① AI × SNS運用講座</h3>
+            <Card className="bg-white shadow-lg hover:shadow-2xl sm:hover:scale-105 transition-all duration-300 group cursor-pointer">
+              <div className="bg-blue-600 group-hover:bg-blue-500 text-white p-3 sm:p-4 transition-colors duration-300">
+                <h3 className="text-lg sm:text-xl font-bold text-center group-hover:text-blue-100 transition-colors duration-300">① AI × SNS運用講座</h3>
               </div>
-              <CardContent className="p-6">
-                <div className="space-y-6">
+              <CardContent className="p-4 sm:p-6">
+                <div className="space-y-4 sm:space-y-6">
                   <div>
                     <div className="flex items-center justify-between mb-2 gap-2">
                       <h4 className="font-bold text-blue-900 text-sm sm:text-base whitespace-nowrap flex-shrink-0">基礎理解とマインドセット</h4>
@@ -763,12 +763,12 @@ export default function HighConvertingLP() {
             </Card>
 
             {/* GAS Course Schedule */}
-            <Card className="bg-white shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 group cursor-pointer">
-              <div className="bg-green-600 group-hover:bg-green-500 text-white p-4 transition-colors duration-300">
-                <h3 className="text-xl font-bold text-center group-hover:text-green-100 transition-colors duration-300">② AI × GAS自動化講座</h3>
+            <Card className="bg-white shadow-lg hover:shadow-2xl sm:hover:scale-105 transition-all duration-300 group cursor-pointer">
+              <div className="bg-green-600 group-hover:bg-green-500 text-white p-3 sm:p-4 transition-colors duration-300">
+                <h3 className="text-lg sm:text-xl font-bold text-center group-hover:text-green-100 transition-colors duration-300">② AI × GAS自動化講座</h3>
               </div>
-              <CardContent className="p-6">
-                <div className="space-y-6">
+              <CardContent className="p-4 sm:p-6">
+                <div className="space-y-4 sm:space-y-6">
                   <div>
                     <div className="flex items-center justify-between mb-2 gap-2">
                       <h4 className="font-bold text-green-900 text-sm sm:text-base whitespace-nowrap flex-shrink-0">生成AIとGASの基礎</h4>
