@@ -870,30 +870,32 @@ export default function HighConvertingLP() {
               <Card key={index} className="border border-gray-200">
                 <Collapsible open={openFAQ === index} onOpenChange={() => setOpenFAQ(openFAQ === index ? null : index)}>
                   <CollapsibleTrigger asChild>
-                    <div className="p-6 cursor-pointer hover:bg-gray-50 transition-colors">
+                    <div className="p-4 sm:p-6 cursor-pointer hover:bg-gray-50 transition-colors">
                       <div className="flex items-center justify-between">
-                        <h3 className="font-bold text-lg text-gray-900 flex items-center gap-3">
-                          <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                        <h3 className="font-bold text-sm sm:text-lg text-gray-900 flex items-center gap-2 sm:gap-3 flex-1">
+                          <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs sm:text-sm font-bold flex-shrink-0">
                             Q
                           </div>
-                          {faq.question}
+                          <span className="break-words">{faq.question}</span>
                         </h3>
-                        {openFAQ === index ? (
-                          <Minus className="w-8 h-8 text-blue-600" />
-                        ) : (
-                          <Plus className="w-8 h-8 text-blue-600" />
-                        )}
+                        <div className="flex-shrink-0 ml-2">
+                          {openFAQ === index ? (
+                            <Minus className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
+                          ) : (
+                            <Plus className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
+                          )}
+                        </div>
                       </div>
                     </div>
                   </CollapsibleTrigger>
                   <CollapsibleContent>
-                    <div className="px-6 pb-6">
-                      <div className="bg-blue-50 p-4 rounded-lg">
-                        <p className="text-gray-700 leading-relaxed flex items-start gap-3">
-                          <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
+                    <div className="px-4 sm:px-6 pb-4 sm:pb-6">
+                      <div className="bg-blue-50 p-3 sm:p-4 rounded-lg">
+                        <p className="text-gray-700 leading-relaxed flex items-start gap-2 sm:gap-3">
+                          <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-xs sm:text-sm font-bold flex-shrink-0">
                             A
                           </div>
-                          <span>{faq.answer}</span>
+                          <span className="text-sm sm:text-base">{faq.answer}</span>
                         </p>
                       </div>
                     </div>
