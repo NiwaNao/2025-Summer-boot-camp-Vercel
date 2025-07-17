@@ -1080,9 +1080,12 @@ export default function HighConvertingLP() {
       <section id="main-cta" className="py-20 bg-gradient-to-r from-blue-900 to-indigo-900 text-white">
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
-            <div className="flex items-center justify-center gap-2 sm:gap-3">
+            <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
               <Flame className="w-8 h-8 sm:w-10 sm:h-10 text-orange-400 flex-shrink-0" />
-              <span className="whitespace-nowrap">今すぐ行動して、スキルアップしませんか？</span>
+              <span>
+                <span className="block sm:inline">今すぐ行動して、</span>
+                <span className="whitespace-nowrap">スキルアップしませんか？</span>
+              </span>
             </div>
           </h2>
 
