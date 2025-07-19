@@ -7,10 +7,22 @@ const stripe = new Stripe(stripeSecretKey, {
   apiVersion: "2025-06-30.basil",
 })
 
+// デバッグログ制御
+const isDevelopment = process.env.NODE_ENV === "development"
+const debugLog = (message: string, data?: any) => {
+  if (isDevelopment) {
+    if (data) {
+      console.log(message, data)
+    } else {
+      console.log(message)
+    }
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const applicationData = await request.json()
-    console.log("受信した申込み情報:", applicationData)
+    debugLog("受信した申込み情報:", applicationData)
 
     // 価格の設定
     const priceData = {
@@ -63,7 +75,7 @@ export async function POST(request: NextRequest) {
       customer_email: applicationData.email,
     })
 
-    console.log("Checkout Session作成成功:", session.id)
+    debugLog("Checkout Session作成成功:", session.id)
     return NextResponse.json({ sessionId: session.id, url: session.url })
   } catch (error) {
     console.error("Checkout Session作成エラー:", error)

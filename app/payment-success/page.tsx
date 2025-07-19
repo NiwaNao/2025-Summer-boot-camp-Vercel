@@ -11,31 +11,23 @@ export default function PaymentSuccessPage() {
   const [emailSent, setEmailSent] = useState(false)
   const [emailError, setEmailError] = useState<string | null>(null)
   const [isProcessing, setIsProcessing] = useState(true)
-  const [webhookLogs, setWebhookLogs] = useState<string[]>([])
-
-  const addLog = (message: string) => {
-    console.log(message)
-    setWebhookLogs((prev) => [...prev, `${new Date().toLocaleTimeString()}: ${message}`])
-  }
 
   useEffect(() => {
-    addLog("ページロード開始")
-    
     // メール送信はStripe webhookで実行されるため、決済完了ページでの処理は無効化
-    addLog("メール送信はStripe webhookで実行済みです")
+    console.log("決済完了ページ: メール送信はStripe webhookで実行済みです")
     
     // ローカルストレージから古いデータがあれば削除
     const savedData = localStorage.getItem("towaApplication")
     if (savedData) {
       localStorage.removeItem("towaApplication")
-      addLog("ローカルストレージの古いデータを削除しました")
+      console.log("ローカルストレージの古いデータを削除しました")
     }
     
     // 決済完了状態を設定（申し込み情報表示はスキップ）
     setIsProcessing(false)
     setEmailSent(true)
     setApplicationData({ success: true }) // 成功状態をセット
-    addLog("決済完了。メールはStripe webhookから送信されています。")
+    console.log("決済完了。メールはStripe webhookから送信されています。")
 
     // ページロード時にスクロール位置を上部にリセット
     window.scrollTo(0, 0)
@@ -49,20 +41,6 @@ export default function PaymentSuccessPage() {
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
             <p className="text-gray-600">申し込み情報を処理しています...</p>
             <p className="text-sm text-gray-500 mt-2">メール送信中です。しばらくお待ちください。</p>
-
-            {/* デバッグログ表示 */}
-            <div className="mt-4 text-left">
-              <details className="text-xs">
-                <summary className="cursor-pointer text-blue-600">処理ログを表示</summary>
-                <div className="mt-2 p-2 bg-gray-100 rounded max-h-40 overflow-y-auto">
-                  {webhookLogs.map((log, index) => (
-                    <div key={index} className="text-gray-700">
-                      {log}
-                    </div>
-                  ))}
-                </div>
-              </details>
-            </div>
           </CardContent>
         </Card>
       </div>
@@ -77,20 +55,6 @@ export default function PaymentSuccessPage() {
             <AlertCircle className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
             <p className="text-gray-600">申し込み情報が見つかりません。</p>
             <p className="text-sm text-gray-500 mt-2">お手数ですが、運営チームまでお問い合わせください。</p>
-
-            {/* デバッグログ表示 */}
-            <div className="mt-4 text-left">
-              <details className="text-xs">
-                <summary className="cursor-pointer text-blue-600">処理ログを表示</summary>
-                <div className="mt-2 p-2 bg-gray-100 rounded max-h-40 overflow-y-auto">
-                  {webhookLogs.map((log, index) => (
-                    <div key={index} className="text-gray-700">
-                      {log}
-                    </div>
-                  ))}
-                </div>
-              </details>
-            </div>
 
             <div className="mt-4">
               <Link href="/line-consultation">
@@ -113,22 +77,6 @@ export default function PaymentSuccessPage() {
           <h1 className="text-3xl font-bold text-gray-900 mb-4">🎉 お申し込みありがとうございます！</h1>
           <p className="text-lg text-gray-600">決済が正常に完了しました</p>
         </div>
-
-        {/* デバッグログ表示 */}
-        <Card className="mb-8 border-blue-200 bg-blue-50">
-          <CardContent className="p-6">
-            <details className="text-sm">
-              <summary className="cursor-pointer text-blue-900 font-semibold">🔍 処理ログを表示（デバッグ用）</summary>
-              <div className="mt-4 p-4 bg-white rounded border max-h-60 overflow-y-auto">
-                {webhookLogs.map((log, index) => (
-                  <div key={index} className="text-gray-700 font-mono text-xs mb-1">
-                    {log}
-                  </div>
-                ))}
-              </div>
-            </details>
-          </CardContent>
-        </Card>
 
         {/* メール送信状況の表示 */}
         {emailError && (
@@ -250,38 +198,32 @@ export default function PaymentSuccessPage() {
           </Card>
         </div>
 
-        <Card className="bg-green-50 border-green-200">
-          <CardContent className="p-6 text-center">
-            <h3 className="text-lg font-bold text-green-900 mb-4">ご質問・ご不明な点がございましたら</h3>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/line-consultation">
-                <Button
-                  size="lg"
-                  className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg font-semibold flex items-center gap-2"
-                >
-                  <Users className="w-5 h-5" />
-                  LINEで相談する
-                </Button>
-              </Link>
-              <Link href="/">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white px-8 py-4 text-lg font-semibold bg-transparent"
-                >
-                  トップページに戻る
-                </Button>
-              </Link>
+        {/* アクションボタン */}
+        <div className="text-center space-y-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/line-consultation">
+              <Button className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg font-semibold flex items-center gap-2 w-full sm:w-auto">
+                <Mail className="w-5 h-5" />
+                LINEで質問する
+              </Button>
+            </Link>
+            <Link href="/">
+              <Button variant="outline" className="border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-8 py-4 text-lg font-semibold w-full sm:w-auto">
+                トップページに戻る
+              </Button>
+            </Link>
+          </div>
+          
+          <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+            <h3 className="font-bold text-blue-900 mb-2">📞 お問い合わせ</h3>
+            <p className="text-sm text-blue-800">
+              ご不明な点がございましたら、お気軽にお問い合わせください。
+            </p>
+            <div className="mt-2 text-sm text-blue-700">
+              <p>📧 Email: info@towa-ai.com</p>
+              <p>📱 LINE: @towa-ai</p>
             </div>
-          </CardContent>
-        </Card>
-
-        <div className="text-center mt-8">
-          <p className="text-gray-600 text-sm">
-            運営会社：株式会社アクロス（TOWA事業）
-            <br />
-            Email: info@towa-ai.com
-          </p>
+          </div>
         </div>
       </div>
     </div>

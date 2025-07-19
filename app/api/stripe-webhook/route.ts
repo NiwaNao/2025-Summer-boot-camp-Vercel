@@ -6,6 +6,18 @@ import nodemailer from "nodemailer"
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY || "sk_test_dummy_key_for_build"
 const stripe = require("stripe")(stripeSecretKey)
 
+// デバッグログ制御
+const isDevelopment = process.env.NODE_ENV === "development"
+const debugLog = (message: string, data?: any) => {
+  if (isDevelopment) {
+    if (data) {
+      console.log(message, data)
+    } else {
+      console.log(message)
+    }
+  }
+}
+
 // Nodemailerの設定
 const createTransporter = () => {
   return nodemailer.createTransport({
@@ -30,6 +42,7 @@ async function sendEmail(to: string, subject: string, text: string) {
     }
 
     const info = await transporter.sendMail(mailOptions)
+    debugLog('メール送信成功:', { messageId: info.messageId, to })
     return { success: true, messageId: info.messageId }
   } catch (error) {
     console.error('メール送信エラー:', error)
@@ -39,7 +52,7 @@ async function sendEmail(to: string, subject: string, text: string) {
 
 export async function POST(request: NextRequest) {
   try {
-    console.log("=== Stripe Webhook受信 ===")
+    debugLog("=== Stripe Webhook受信 ===")
 
     const body = await request.text()
     const headersList = await headers()
@@ -60,32 +73,32 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Webhook signature verification failed" }, { status: 400 })
     }
 
-    console.log("Stripe Event Type:", event.type)
-    console.log("Event Data:", JSON.stringify(event.data, null, 2))
+    debugLog("Stripe Event Type:", event.type)
+    debugLog("Event Data:", JSON.stringify(event.data, null, 2))
 
     // checkout.session.completedイベントを処理
     if (event.type === "checkout.session.completed") {
       const session = event.data.object
-      console.log("Checkout Session:", session)
+      debugLog("Checkout Session:", session)
 
       // セッションから決済情報を取得
       const paymentAmount = session.amount_total // 日本円はセント単位ではない
       const customerEmail = session.customer_details?.email
       const customerName = session.customer_details?.name
 
-      console.log(`決済完了: ${customerName} (${customerEmail}) - ¥${paymentAmount}`)
+      debugLog(`決済完了: ${customerName} (${customerEmail}) - ¥${paymentAmount}`)
 
-      // 決済完了ログ出力
-      console.log("=== Stripe決済完了 ===")
-      console.log(`お名前: ${customerName || "未取得"}`)
-      console.log(`メールアドレス: ${customerEmail || "未取得"}`)
-      console.log(`決済金額: ¥${paymentAmount.toLocaleString()}`)
-      console.log(`決済日時: ${new Date().toLocaleString("ja-JP")}`)
-      console.log(`セッションID: ${session.id}`)
+      // 決済完了ログ出力（開発環境のみ）
+      debugLog("=== Stripe決済完了 ===")
+      debugLog(`お名前: ${customerName || "未取得"}`)
+      debugLog(`メールアドレス: ${customerEmail || "未取得"}`)
+      debugLog(`決済金額: ¥${paymentAmount.toLocaleString()}`)
+      debugLog(`決済日時: ${new Date().toLocaleString("ja-JP")}`)
+      debugLog(`セッションID: ${session.id}`)
 
       // metadataから申込み情報を取得
       const metadata = session.metadata || {}
-      console.log("Metadata:", metadata)
+      debugLog("Metadata:", metadata)
 
       // 申込み情報を再構築
       const applicationData = {
@@ -107,7 +120,7 @@ export async function POST(request: NextRequest) {
         termsAgreed: true,
       }
 
-      console.log("再構築した申込み情報:", applicationData)
+      debugLog("再構築した申込み情報:", applicationData)
 
       // 申込み情報を含むメール送信
       try {
@@ -120,7 +133,7 @@ export async function POST(request: NextRequest) {
         })
 
         const emailResult = await response.json()
-        console.log("メール送信結果:", emailResult)
+        debugLog("メール送信結果:", emailResult)
 
       return NextResponse.json({
         success: true,
