@@ -121,10 +121,13 @@ export default function HighConvertingLP() {
         </div>
       </div>
 
-      {/* Hero Section - 上部配置で人物に被らないように */}
+      {/* Hero Section - 元のレイアウト */}
       <section
         className="py-16 px-4 relative min-h-[85vh] flex items-start justify-start pt-24 hero-section md:justify-start md:items-start"
         style={{
+          backgroundImage: "linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 100%), url('/images/hero-new3.png')",
+          backgroundPosition: "center 20%",
+          backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
       >
@@ -420,7 +423,7 @@ export default function HighConvertingLP() {
                 <p className="text-gray-700 mb-6 leading-relaxed group-hover:text-gray-900 transition-colors">
                   コーディング未経験でも大丈夫。生成AIとGASで予約・在庫管理などの業務を自動化し、自分専用システムを構築します。
                 </p>
-                <ul className="space-y-3 text-gray-700">
+                <ul className="space-y-3 text-gray-700 mb-6">
                   <li className="flex items-start gap-2 group-hover:text-gray-900 transition-colors">
                     <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0 group-hover:text-green-700 transition-colors" />
                     <span>コピペで応用できる「自動化プロンプト集」</span>
@@ -438,6 +441,12 @@ export default function HighConvertingLP() {
                     <span>自分専用の自動化システムを構築できる</span>
                   </li>
                 </ul>
+                <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                  <h4 className="font-bold text-blue-900 mb-2">GAS（Google Apps Script）とは？</h4>
+                  <p className="text-sm text-blue-800 leading-relaxed">
+                    Googleが提供する無料のプログラミング環境です。スプレッドシート、フォーム、カレンダーなどのGoogleサービスと連携して、業務の自動化やシステム構築ができます。JavaScriptベースで、初心者でも学びやすく、すぐに実用的なシステムを作れるのが特徴です。
+                  </p>
+                </div>
               </CardContent>
             </Card>
           </div>
