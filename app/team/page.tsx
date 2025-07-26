@@ -42,20 +42,20 @@ export default function TeamPage() {
 
         {/* Our Vision */}
         <section className="mb-16">
-          <Card className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white shadow-xl">
+          <Card className="text-gray-900 shadow-xl" style={{ backgroundColor: '#f7f4ef' }}>
             <CardContent className="p-8 md:p-12">
               <div className="text-center mb-8">
                 <h2 className="text-3xl font-bold mb-4 flex items-center justify-center gap-3">
-                  <Target className="w-8 h-8" />
+                  <Target className="w-8 h-8 text-gray-900" />
                   私たちが目指す未来
                 </h2>
               </div>
-              <div className="space-y-6 text-lg leading-relaxed">
+              <div className="space-y-6 text-lg leading-relaxed text-gray-700">
                 <p>
                   AIは、特別な人のための難しい技術ではありません。正しく、そして等身大で使えれば、企業にも個人にも、大きな変化のきっかけをもたらす力になります。
                 </p>
                 <p>
-                  <strong className="text-blue-200">TOWA</strong>
+                  <strong className="text-blue-600">TOWA</strong>
                   では、単なる効率化や自動化にとどまらず、現場に根ざしたAIの使い方や、組織全体が少しずつ変わっていける"仕組み"の構築を大切にしています。
                 </p>
                 <p>
@@ -63,16 +63,16 @@ export default function TeamPage() {
                 </p>
                 <p>
                   そして何より、AIというツールを"手段"として、人や企業の
-                  <strong className="text-blue-200">「想い」や「可能性」</strong>
-                  を、形にする存在でありたい。それが、私たち<strong className="text-blue-200">TOWA</strong>
+                  <strong className="text-blue-600">「想い」や「可能性」</strong>
+                  を、形にする存在でありたい。それが、私たち<strong className="text-blue-600">TOWA</strong>
                   の目指す姿です。
                 </p>
                 <p className="text-center text-xl font-semibold mt-8">
                   人生にも、事業にも、「もう一度やり直したい」「次のフェーズへ進みたい」と感じるタイミングがあります。そこには
-                  <strong className="text-blue-200">もう一度輝ける力</strong>があると、私たちは信じています。
+                  <strong className="text-blue-600">もう一度輝ける力</strong>があると、私たちは信じています。
                 </p>
                 <p className="text-center text-lg">
-                  <strong className="text-blue-200">TOWA</strong>
+                  <strong className="text-blue-600">TOWA</strong>
                   は、そんな再出発や変化の時期に寄り添いながら、AIの力と人の力をつなげて、次の一歩をともに見つけていく存在でありたいと願っています。
                 </p>
               </div>

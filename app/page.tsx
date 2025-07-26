@@ -93,26 +93,26 @@ export default function HighConvertingLP() {
   return (
     <div className="min-h-screen mobile-safe">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b relative z-10">
+      <header className="absolute top-0 left-0 right-0 z-20 bg-transparent">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-blue-900">TOWA</div>
+          <div className="text-2xl font-bold text-white">TOWA</div>
           <div className="flex items-center gap-2 md:gap-4">
             <Link href="/about">
-              <Button variant="outline" size="sm" className="text-xs md:text-sm px-2 md:px-4">
+              <span className="inline-block text-xs md:text-sm px-2 md:px-4 py-1 md:py-2 text-white border border-white rounded hover:bg-white hover:text-gray-900 transition-colors cursor-pointer">
                 TOWAについて
-              </Button>
+              </span>
             </Link>
             <Link href="/team">
-              <Button variant="outline" size="sm" className="text-xs md:text-sm px-2 md:px-4">
+              <span className="inline-block text-xs md:text-sm px-2 md:px-4 py-1 md:py-2 text-white border border-white rounded hover:bg-white hover:text-gray-900 transition-colors cursor-pointer">
                 About Us
-              </Button>
+              </span>
             </Link>
           </div>
         </div>
       </header>
 
       {/* Urgency Banner */}
-      <div className="bg-red-600 text-white py-2 text-center relative z-10">
+      <div className="bg-red-600 text-white py-2 text-center absolute top-16 left-0 right-0 z-15">
         <div className="flex items-center justify-center gap-1 md:gap-2 text-xs md:text-sm font-medium px-2">
           <Clock className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" />
           <span className="break-words-force">
@@ -121,75 +121,69 @@ export default function HighConvertingLP() {
         </div>
       </div>
 
-      {/* Hero Section with Background Image */}
+      {/* Hero Section - 上部配置で人物に被らないように */}
       <section
-        className="py-16 px-4 relative min-h-[80vh] flex items-center bg-hero-mobile md:bg-hero-desktop"
+        className="py-16 px-4 relative min-h-[85vh] flex items-start justify-start pt-24 hero-section md:justify-start md:items-start"
         style={{
-          backgroundImage: `linear-gradient(135deg, rgba(30, 58, 138, 0.3) 0%, rgba(59, 130, 246, 0.2) 100%), url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1E03E4AD-FFFF-4FAE-8D9D-DBCAB7585ED2-Z4g4PqPnDXUGnycUu1qGlbK1f2DUXN.png')`,
-          backgroundSize: "cover",
-          backgroundPosition: isMobile ? "center 30%" : "center center",
           backgroundRepeat: "no-repeat",
         }}
       >
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/10"></div>
-
-        <div className="container mx-auto text-center max-w-4xl relative z-10">
-          <div className="flex justify-center mb-6 animate-bounce-gentle">
-            <Badge className="bg-red-100/90 text-red-800 px-4 py-2 text-lg font-semibold backdrop-blur-sm flex items-center gap-2 shadow-lg">
-              <Flame className="w-5 h-5 animate-pulse" />
-              札幌限定 | 各回8名の超少人数制
+        <div className="w-full px-8 text-left max-w-2xl relative z-10 mt-16 md:mt-16 mt-8 md:text-left text-center">
+          {/* 筆記体テキスト */}
+          <div className="mb-4">
+            <span style={{ fontFamily: 'var(--font-playfair-display)', fontSize: '2rem', color: 'white', textShadow: '0 2px 8px rgba(0,0,0,0.25)', fontWeight: '500' }} className="md:text-4xl">
+              1Day Summer Boot Camp
+            </span>
+          </div>
+          {/* 限定バッジ */}
+          <div className="flex justify-start mb-6">
+            <Badge className="bg-red-500 text-white px-4 py-2 text-sm font-bold border-0 shadow-lg font-hiragino-kaku-gothic">
+              <Flame className="w-3 h-3 mr-1" />
+              札幌限定・8名限定
             </Badge>
           </div>
 
-          <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight drop-shadow-2xl break-words-force animate-float">
-            <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4 md:p-8 shadow-xl">
-              SNSの発信、つづいてますか？
-              <br />
-              <span className="text-lg md:text-2xl lg:text-3xl">
-                業務に追われて、本当にやりたいことができていますか？
-              </span>
-              <br />
-              <span className="text-blue-100 text-base md:text-xl lg:text-2xl mt-4 block">
-                札幌限定｜AIで「発信」も「業務」も効率化できる1日集中講座
-              </span>
-            </div>
+          {/* メインタイトル */}
+          <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-hiragino-kaku-gothic">
+            AI活用
+            <br />
+            マスター講座
           </h1>
 
-          <div className="bg-black/30 backdrop-blur-sm rounded-lg p-6 mb-8 animate-fade-in-up shadow-lg">
-            <p className="text-base md:text-lg text-white leading-relaxed">
-              選べる2講座（SNS運用／業務自動化）で、あなたの課題にピンポイントでアプローチ。
-              <br />
-              <span className="text-blue-100 text-sm md:text-base mt-2 block">
-                「秋から変わる自分」をこの夏、手に入れましょう。
-              </span>
-            </p>
-          </div>
-
-          <div className="flex justify-center mb-12">
+          {/* サブタイトル */}
+          <p className="text-xl md:text-2xl text-white/90 font-medium mb-8 font-hiragino-kaku-gothic">
+            SNS配信も事務作業も自動化
+          </p>
+        </div>
+        
+        {/* 下部コンテンツ - CTAボタンと特徴アイコン */}
+        <div className="absolute bottom-8 left-8 right-8 md:left-8 md:right-auto">
+          {/* CTAボタン */}
+          <div className="flex justify-start md:justify-start mb-6">
             <Link href="/line-consultation">
               <Button
                 size="lg"
-                className="bg-blue-900 hover:bg-blue-800 text-white px-8 py-4 text-lg font-semibold shadow-xl transform hover:scale-110 transition-all flex items-center gap-2 w-full sm:w-auto"
+                className="bg-white text-blue-900 hover:bg-gray-100 px-10 py-4 text-lg font-bold shadow-xl transform hover:scale-105 transition-all rounded-xl"
               >
-                <MessageCircle className="w-5 h-5" />
-                LINEで相談する
+                <MessageCircle className="w-5 h-5 mr-2" />
+                詳細を見る
               </Button>
             </Link>
           </div>
-
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-6 text-sm text-white">
-            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 hover:bg-white/40 transition-all cursor-pointer shadow-lg">
-              <Users className="w-4 h-4 sm:w-5 sm:h-5 text-purple-200 flex-shrink-0" />
-              <span className="text-xs sm:text-sm whitespace-nowrap">各回8名の超少人数制</span>
+          
+          {/* 特徴アイコン */}
+          <div className="flex justify-start md:justify-start gap-6 text-white/80">
+            <div className="flex items-center gap-1">
+              <Users className="w-4 h-4" />
+              <span className="text-sm font-hiragino-kaku-gothic">8名限定</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 hover:bg-white/40 transition-all cursor-pointer shadow-lg">
-              <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-blue-200 flex-shrink-0" />
-              <span className="text-xs sm:text-sm whitespace-nowrap">講師2名で手厚くサポート</span>
+            <div className="flex items-center gap-1">
+              <BookOpen className="w-4 h-4" />
+              <span className="text-sm font-hiragino-kaku-gothic">1日完結</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/30 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 hover:bg-white/40 transition-all cursor-pointer shadow-lg">
-              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-200 flex-shrink-0" />
-              <span className="text-xs sm:text-sm whitespace-nowrap">実践的なカリキュラム</span>
+            <div className="flex items-center gap-1">
+              <CheckCircle className="w-4 h-4" />
+              <span className="text-sm font-hiragino-kaku-gothic">対面開催</span>
             </div>
           </div>
         </div>
@@ -374,73 +368,73 @@ export default function HighConvertingLP() {
       </section>
 
       {/* Course Selection - 問題提起の後に解決策を提示 */}
-      <section id="sns-course" className="py-16 bg-blue-900 text-white">
+      <section id="sns-course" className="py-16 text-gray-900" style={{ backgroundColor: '#f7f4ef' }}>
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">
             <div className="flex items-center justify-center gap-2 sm:gap-3">
-              <BookOpen className="w-6 h-6 sm:w-8 sm:h-8 text-white flex-shrink-0" />
+              <BookOpen className="w-6 h-6 sm:w-8 sm:h-8 text-gray-900 flex-shrink-0" />
               <span className="whitespace-nowrap">2つの実践講座から選べます</span>
             </div>
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer group">
+            <Card className="bg-white border-gray-200 hover:bg-gray-50 hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer group">
               <CardContent className="p-8">
                 <div className="text-center mb-6">
                   <Badge className="bg-blue-600 text-white px-4 py-2 text-lg font-bold mb-4 group-hover:bg-blue-500 transition-colors">
                     ① AI × SNS運用講座（1日）
                   </Badge>
                 </div>
-                <p className="text-white mb-6 leading-relaxed group-hover:text-blue-100 transition-colors">
+                <p className="text-gray-700 mb-6 leading-relaxed group-hover:text-gray-900 transition-colors">
                   ChatGPTとCanva
                   AIで投稿作成を劇的に効率化。継続できる仕組みを1日で構築し、成果の出るSNS運用を実現します。
                 </p>
-                <ul className="space-y-3 text-white">
-                  <li className="flex items-start gap-2 group-hover:text-blue-100 transition-colors">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0 group-hover:text-green-300 transition-colors" />
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start gap-2 group-hover:text-gray-900 transition-colors">
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0 group-hover:text-green-700 transition-colors" />
                     <span>SNS発信に迷わない「投稿テーマテンプレート」</span>
                   </li>
-                  <li className="flex items-start gap-2 group-hover:text-blue-100 transition-colors">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0 group-hover:text-green-300 transition-colors" />
+                  <li className="flex items-start gap-2 group-hover:text-gray-900 transition-colors">
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0 group-hover:text-green-700 transition-colors" />
                     <span>Canva AIによる画像・投稿文の一括作成</span>
                   </li>
-                  <li className="flex items-start gap-2 group-hover:text-blue-100 transition-colors">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0 group-hover:text-green-300 transition-colors" />
+                  <li className="flex items-start gap-2 group-hover:text-gray-900 transition-colors">
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0 group-hover:text-green-700 transition-colors" />
                     <span>反応が取れる投稿構成の習得</span>
                   </li>
-                  <li className="flex items-start gap-2 group-hover:text-blue-100 transition-colors">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0 group-hover:text-green-300 transition-colors" />
+                  <li className="flex items-start gap-2 group-hover:text-gray-900 transition-colors">
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0 group-hover:text-green-700 transition-colors" />
                     <span>継続できるAI活用の仕組み作り</span>
                   </li>
                 </ul>
               </CardContent>
             </Card>
 
-            <Card id="gas-course" className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer group">
+            <Card id="gas-course" className="bg-white border-gray-200 hover:bg-gray-50 hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer group">
               <CardContent className="p-8">
                 <div className="text-center mb-6">
                   <Badge className="bg-green-600 text-white px-4 py-2 text-lg font-bold mb-4 group-hover:bg-green-500 transition-colors">
                     ② AI × GAS自動化講座（1日）
                   </Badge>
                 </div>
-                <p className="text-white mb-6 leading-relaxed group-hover:text-green-100 transition-colors">
+                <p className="text-gray-700 mb-6 leading-relaxed group-hover:text-gray-900 transition-colors">
                   コーディング未経験でも大丈夫。生成AIとGASで予約・在庫管理などの業務を自動化し、自分専用システムを構築します。
                 </p>
-                <ul className="space-y-3 text-white">
-                  <li className="flex items-start gap-2 group-hover:text-green-100 transition-colors">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0 group-hover:text-green-300 transition-colors" />
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start gap-2 group-hover:text-gray-900 transition-colors">
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0 group-hover:text-green-700 transition-colors" />
                     <span>コピペで応用できる「自動化プロンプト集」</span>
                   </li>
-                  <li className="flex items-start gap-2 group-hover:text-green-100 transition-colors">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0 group-hover:text-green-300 transition-colors" />
+                  <li className="flex items-start gap-2 group-hover:text-gray-900 transition-colors">
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0 group-hover:text-green-700 transition-colors" />
                     <span>フォーム〜カレンダー連携の自動化技術</span>
                   </li>
-                  <li className="flex items-start gap-2 group-hover:text-green-100 transition-colors">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0 group-hover:text-green-300 transition-colors" />
+                  <li className="flex items-start gap-2 group-hover:text-gray-900 transition-colors">
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0 group-hover:text-green-700 transition-colors" />
                     <span>AIにコードを生成させる思考法を習得</span>
                   </li>
-                  <li className="flex items-start gap-2 group-hover:text-green-100 transition-colors">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0 group-hover:text-green-300 transition-colors" />
+                  <li className="flex items-start gap-2 group-hover:text-gray-900 transition-colors">
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0 group-hover:text-green-700 transition-colors" />
                     <span>自分専用の自動化システムを構築できる</span>
                   </li>
                 </ul>
@@ -1079,11 +1073,11 @@ export default function HighConvertingLP() {
       </section>
 
       {/* Main CTA Section */}
-      <section id="main-cta" className="py-20 bg-gradient-to-r from-blue-900 to-indigo-900 text-white">
+      <section id="main-cta" className="py-16 text-gray-900" style={{ backgroundColor: '#f7f4ef' }}>
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
             <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
-              <Flame className="w-8 h-8 sm:w-10 sm:h-10 text-orange-400 flex-shrink-0" />
+              <Flame className="w-8 h-8 sm:w-10 sm:h-10 text-orange-500 flex-shrink-0" />
               <span>
                 <span className="block sm:inline">今すぐ行動して、</span>
                 <span className="whitespace-nowrap">スキルアップしませんか？</span>
@@ -1091,7 +1085,7 @@ export default function HighConvertingLP() {
             </div>
           </h2>
 
-          <p className="text-xl mb-6 opacity-90">
+          <p className="text-xl mb-6 text-gray-700">
             早割価格は、あと<strong>{timeLeft.days}日</strong>で終了します。
             <br />
             各回8名の超少人数制のため、お早めにお申し込みください。
@@ -1101,7 +1095,7 @@ export default function HighConvertingLP() {
             <Link href="/apply">
               <Button
                 size="lg"
-                className="bg-white text-blue-900 hover:bg-gray-100 px-12 py-6 text-xl font-bold shadow-xl transform hover:scale-105 transition-all flex items-center gap-2 animate-bounce-cta"
+                className="bg-blue-600 text-white hover:bg-blue-700 px-12 py-6 text-xl font-bold shadow-xl transform hover:scale-105 transition-all flex items-center gap-2 animate-bounce-cta"
               >
                 <Target className="w-6 h-6" />
                 今すぐ申し込む（早割価格）
@@ -1114,7 +1108,7 @@ export default function HighConvertingLP() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 text-lg font-semibold bg-transparent flex items-center gap-2"
+                  className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold bg-transparent flex items-center gap-2"
                 >
                   <MessageCircle className="w-5 h-5" />
                   LINEで相談する
@@ -1126,12 +1120,15 @@ export default function HighConvertingLP() {
       </section>
 
       {/* Final Push */}
-      <section className="py-16 bg-blue-900 text-white">
+      <section className="pt-8 pb-16 text-gray-900" style={{ backgroundColor: '#f7f4ef' }}>
         <div className="container mx-auto px-4 text-center max-w-3xl">
-          <h2 className="text-3xl font-bold mb-6">最後に、あなたに質問があります。</h2>
+          <h2 className="text-2xl font-bold mb-6">
+            最後に、あなたに質問があります。
+            <br />
+            1年後、あなたはどちらの人生を送っていたいですか？
+          </h2>
 
           <div className="text-lg space-y-4 mb-8">
-            <p>1年後、あなたはどちらの人生を送っていたいですか？</p>
 
             <div className="grid md:grid-cols-2 gap-6 mt-8">
               <Card className="bg-white border-gray-200 p-6">
@@ -1170,14 +1167,14 @@ export default function HighConvertingLP() {
 
           <p className="text-lg sm:text-xl mb-8">
             <span className="block mb-2">選択は、あなた次第です。</span>
-            <span className="whitespace-nowrap">でも、<strong className="text-blue-400">行動できるチャンスは今だけ</strong>です。</span>
+            <span className="whitespace-nowrap">でも、<strong className="text-blue-600">行動できるチャンスは今だけ</strong>です。</span>
           </p>
 
           <div className="text-center">
             <Link href="/apply">
               <Button
                 size="lg"
-                className="bg-blue-900 hover:bg-blue-800 text-white px-12 py-6 text-xl font-bold shadow-xl transform hover:scale-110 transition-all mx-auto animate-action-button"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-12 py-6 text-xl font-bold shadow-xl transform hover:scale-110 transition-all mx-auto animate-action-button"
               >
                 <div className="flex items-center justify-center gap-2">
                   <Rocket className="w-6 h-6" />
@@ -1195,7 +1192,7 @@ export default function HighConvertingLP() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <div className="text-2xl font-bold text-blue-400 mb-4">TOWA</div>
+              <div className="text-2xl font-bold text-gray-400 mb-4">TOWA</div>
               <div className="space-y-2 text-gray-400 text-sm">
                 <p>運営会社：株式会社アクロス</p>
                 <p>〒107-0061 東京都港区北青山1-3-1</p>

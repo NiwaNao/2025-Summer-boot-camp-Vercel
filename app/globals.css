@@ -30,6 +30,8 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
     --font-noto-sans-jp: var(--font-noto-sans-jp);
+    --font-hiragino-kaku-gothic: "Hiragino Kaku Gothic W7", "Hiragino Kaku Gothic W6", "Hiragino Kaku Gothic W5", "Hiragino Kaku Gothic W3", "Hiragino Kaku Gothic", "Yu Gothic", "Meiryo", sans-serif;
+    --font-playfair-display: var(--font-playfair-display);
   }
 
   .dark {
@@ -103,6 +105,16 @@
 @layer utilities {
   .font-noto {
     font-family: var(--font-noto-sans-jp), sans-serif;
+  }
+  
+  .font-hiragino-kaku-gothic {
+    font-family: var(--font-hiragino-kaku-gothic);
+    font-weight: 700;
+  }
+  
+  .font-playfair-display {
+    font-family: var(--font-playfair-display);
+    font-weight: 400;
   }
   
   /* スマホでの横ずれ防止 */
@@ -290,5 +302,95 @@
   .animate-bounce-slow,
   .animate-float {
     animation-duration: 4s;
+  }
+  
+  /* ヒーローセクションの背景画像調整 - 男女両方が見えるように */
+  .hero-section {
+    background-position: center top !important;
+    background-size: cover !important;
+    min-height: 100vh !important;
+  }
+}
+
+/* より小さなスマホ画面での調整 */
+@media (max-width: 480px) {
+  .hero-section {
+    background-position: center top !important;
+    background-size: cover !important;
+  }
+}
+
+/* スマホでの背景画像位置を強制的に調整 */
+@media (max-width: 768px) {
+  section[style*="hero-new.png"] {
+    background-position: center top !important;
+  }
+}
+
+@media (max-width: 480px) {
+  section[style*="hero-new.png"] {
+    background-position: center top !important;
+  }
+}
+
+/* さらに強力なスタイル - すべてのスマホサイズで背景画像の上部を表示 */
+@media (max-width: 768px) {
+  .hero-section,
+  section[style*="hero-new.png"],
+  section[class*="hero-section"] {
+    background-position: center top !important;
+    background-size: cover !important;
+  }
+}
+
+/* 最も強力なスタイル - すべての要素を対象に背景画像の上部を表示 */
+@media (max-width: 768px) {
+  * {
+    background-position: center top !important;
+  }
+  
+  section,
+  div,
+  .hero-section {
+    background-position: center top !important;
+  }
+}
+
+/* デスクトップ用の背景画像設定 */
+.hero-section {
+  background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 100%), url('/images/hero-new.png');
+  background-position: center center;
+  background-size: cover;
+}
+
+/* スマホサイト用の背景画像設定 */
+@media (max-width: 768px) {
+  .hero-section {
+    background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 100%), url('/images/Hero-new-mobile.png') !important;
+    background-position: center center !important;
+    background-size: cover !important;
+  }
+  
+  /* スマホ用のテキスト配置 - 上部配置で人物に被らないように */
+  .hero-section {
+    align-items: flex-start !important;
+    justify-content: center !important;
+  }
+  
+  .hero-section .container {
+    justify-content: center !important;
+    align-items: flex-start !important;
+    text-align: center !important;
+  }
+  
+  .hero-section .w-full {
+    text-align: center !important;
+    max-width: 100% !important;
+    padding: 0 1rem !important;
+    margin-top: 2rem !important;
+  }
+  
+  .hero-section .flex.justify-start {
+    justify-content: center !important;
   }
 }

@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Noto_Sans_JP } from "next/font/google"
+import { Noto_Sans_JP, Great_Vibes, Playfair_Display } from "next/font/google"
 import Script from "next/script"
 import "./globals.css"
 
@@ -10,6 +10,26 @@ const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
   display: "swap",
 })
+
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-great-vibes",
+  display: "swap",
+})
+
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-playfair-display",
+  display: "swap",
+})
+
+// ヒラギノ角ゴ W7フォントの設定
+const hiraginoKakuGothic = {
+  variable: "--font-hiragino-kaku-gothic",
+  className: "font-hiragino-kaku-gothic",
+}
 
 export const metadata: Metadata = {
   title: "TOWA - 札幌限定サマーブートキャンプ",
@@ -29,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ja" className={notoSansJP.variable}>
+    <html lang="ja" className={`${notoSansJP.variable} ${greatVibes.variable} ${playfairDisplay.variable} ${hiraginoKakuGothic.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>

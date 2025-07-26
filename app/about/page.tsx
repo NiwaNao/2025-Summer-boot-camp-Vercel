@@ -118,13 +118,13 @@ export default function AboutPage() {
 
         {/* Mission Section */}
         <section className="mb-16">
-          <Card className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white shadow-xl">
+          <Card className="text-gray-900 shadow-xl" style={{ backgroundColor: '#f7f4ef' }}>
             <CardContent className="p-8 md:p-12 text-center">
               <div className="flex items-center justify-center gap-3 mb-6">
-                <Globe className="w-8 h-8" />
+                <Globe className="w-8 h-8 text-gray-900" />
                 <h2 className="text-3xl font-bold">私たちのミッション</h2>
               </div>
-              <p className="text-xl leading-relaxed mb-8">
+              <p className="text-xl leading-relaxed mb-8 text-gray-700">
                 AI技術を活用しながら、変わらない価値と信頼を届け、
                 <br />
                 お客様と地域社会の持続的な成長を支援する
@@ -133,7 +133,7 @@ export default function AboutPage() {
                 <Link href="/apply">
                   <Button
                     size="lg"
-                    className="bg-white text-blue-900 hover:bg-gray-100 px-8 py-4 text-lg font-semibold flex items-center gap-2"
+                    className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg font-semibold flex items-center gap-2"
                   >
                     <Target className="w-5 h-5" />
                     講座に申し込む
@@ -143,7 +143,7 @@ export default function AboutPage() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 text-lg font-semibold bg-transparent flex items-center gap-2"
+                    className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold bg-transparent flex items-center gap-2"
                   >
                     <Users className="w-5 h-5" />
                     LINEで相談する
