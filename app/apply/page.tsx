@@ -324,11 +324,7 @@ export default function ApplyPage() {
                       {[
                         { date: "8月11日（月・祝）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
                         { date: "8月12日（火）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
-                        { date: "8月13日（水）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
                         { date: "8月16日（土）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
-                        { date: "8月24日（日）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
-                        { date: "8月30日（土）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
-                        { date: "8月31日（日）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
                       ].map((session, index) => (
                         <div key={index} className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50">
                           <input
@@ -368,11 +364,7 @@ export default function ApplyPage() {
                     {[
                       { date: "8月11日（月・祝）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
                       { date: "8月12日（火）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
-                      { date: "8月13日（水）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
                       { date: "8月16日（土）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
-                      { date: "8月24日（日）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
-                      { date: "8月30日（土）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
-                      { date: "8月31日（日）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
                     ].map((session, index) => (
                       <div key={index} className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50">
                         <RadioGroupItem value={`${session.date} ${session.course}`} id={`date-${index}`} />

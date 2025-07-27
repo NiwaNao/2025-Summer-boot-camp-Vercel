@@ -648,11 +648,7 @@ export default function HighConvertingLP() {
               {[
 { date: "8月11日（月・祝）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
 { date: "8月12日（火）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
-{ date: "8月13日（水）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
 { date: "8月16日（土）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
-{ date: "8月24日（日）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
-{ date: "8月30日（土）", course: "AI×GAS自動化講座", time: "10:00〜17:50" },
-{ date: "8月31日（日）", course: "AI×SNS運用講座", time: "10:00〜16:50" },
               ].map((session, index) => (
                 <div key={index} className="p-4 md:p-6 hover:bg-gray-50 transition-colors">
                   <div className="grid md:grid-cols-3 gap-2 md:gap-4 items-center">
