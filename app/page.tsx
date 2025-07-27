@@ -131,65 +131,68 @@ export default function HighConvertingLP() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        {/* オーバーレイ */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40"></div>
-        <div className="w-full px-8 text-left max-w-2xl relative z-10 mt-16 md:mt-16 mt-8 md:text-left text-center">
-          {/* 筆記体テキスト */}
-          <div className="mb-4">
-            <span style={{ fontFamily: 'var(--font-playfair-display)', fontSize: '2rem', color: 'white', textShadow: '0 2px 8px rgba(0,0,0,0.25)', fontWeight: '500' }} className="md:text-4xl">
-              1Day Summer Boot Camp
-            </span>
-          </div>
-          {/* 限定バッジ */}
-          <div className="flex justify-start mb-6">
-            <Badge className="bg-red-500 text-white px-4 py-2 text-sm font-bold border-0 shadow-lg font-hiragino-kaku-gothic">
-              <Flame className="w-3 h-3 mr-1" />
-              札幌限定・8名限定
-            </Badge>
-          </div>
+        <div className="w-full px-8 text-left max-w-2xl relative z-10 mt-16 md:mt-16 mt-8 md:text-left text-center group">
+          {/* テキスト用オーバーレイ */}
+          <div className="absolute inset-0 bg-black/30 rounded-lg transition-all duration-300 group-hover:bg-black/40 md:max-w-[80%] md:h-fit md:min-h-[400px] md:pb-8 animate-pulse-slow"></div>
+          <div className="relative z-10">
+            {/* 筆記体テキスト */}
+            <div className="mb-4">
+              <span style={{ fontFamily: 'var(--font-playfair-display)', fontSize: '2rem', color: 'white', textShadow: '0 2px 8px rgba(0,0,0,0.25)', fontWeight: '500' }} className="md:text-4xl">
+                1Day Summer Boot Camp
+              </span>
+            </div>
+            {/* 限定バッジ */}
+            <div className="flex justify-start mb-6">
+              <Badge className="bg-red-500 text-white px-4 py-2 text-sm font-bold border-0 shadow-lg font-hiragino-kaku-gothic">
+                <Flame className="w-3 h-3 mr-1" />
+                札幌限定・8名限定
+              </Badge>
+            </div>
 
-          {/* メインタイトル */}
-          <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-hiragino-kaku-gothic">
-            AI活用
-            <br />
-            マスター講座
-          </h1>
+            {/* メインタイトル */}
+            <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-hiragino-kaku-gothic">
+              AI活用
+              <br />
+              マスター講座
+            </h1>
 
-          {/* サブタイトル */}
-          <p className="text-xl md:text-2xl text-white/90 font-medium mb-8 font-hiragino-kaku-gothic">
-            SNS配信も事務作業も自動化
-          </p>
+            {/* サブタイトル */}
+            <p className="text-xl md:text-2xl text-white/90 font-medium mb-8 font-hiragino-kaku-gothic">
+              SNS配信も事務作業も自動化
+            </p>
+          </div>
         </div>
         
         {/* 下部コンテンツ - CTAボタンと特徴アイコン */}
         <div className="absolute bottom-8 left-8 right-8 md:left-8 md:right-auto">
-          {/* CTAボタン */}
-          <div className="flex justify-start md:justify-start mb-6">
-            <Link href="/line-consultation">
-              <Button
-                size="lg"
-                className="bg-white text-blue-900 hover:bg-gray-100 px-10 py-4 text-lg font-bold shadow-xl transform hover:scale-105 transition-all rounded-xl"
-              >
-                <MessageCircle className="w-5 h-5 mr-2" />
-                詳細を見る
-              </Button>
-            </Link>
-          </div>
-          
-          {/* 特徴アイコン */}
-          <div className="flex justify-start md:justify-start gap-6 text-white/80">
-            <div className="flex items-center gap-1">
-              <Users className="w-4 h-4" />
-              <span className="text-sm font-hiragino-kaku-gothic">8名限定</span>
+          <div className="max-w-2xl">
+            {/* CTAボタン */}
+            <div className="flex justify-start md:justify-center mb-6">
+              <Link href="/line-consultation">
+                <Button
+                  size="lg"
+                  className="bg-white text-blue-900 hover:bg-gray-100 px-10 py-4 text-lg font-bold shadow-xl transform hover:scale-105 transition-all rounded-xl"
+                >
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  詳細を見る
+                </Button>
+              </Link>
             </div>
-            <div className="flex items-center gap-1">
-              <BookOpen className="w-4 h-4" />
-              <span className="text-sm font-hiragino-kaku-gothic">1日完結</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <CheckCircle className="w-4 h-4" />
-              <span className="text-sm font-hiragino-kaku-gothic">対面開催</span>
+            
+            {/* 特徴アイコン */}
+            <div className="flex justify-start md:justify-center gap-6 text-white/80">
+              <div className="flex items-center gap-1">
+                <Users className="w-4 h-4" />
+                <span className="text-sm font-hiragino-kaku-gothic">8名限定</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <BookOpen className="w-4 h-4" />
+                <span className="text-sm font-hiragino-kaku-gothic">1日完結</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <CheckCircle className="w-4 h-4" />
+                <span className="text-sm font-hiragino-kaku-gothic">対面開催</span>
+              </div>
             </div>
           </div>
         </div>
