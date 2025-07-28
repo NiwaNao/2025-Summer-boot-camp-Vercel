@@ -108,11 +108,13 @@ export default function PaymentSuccessPage() {
                 LINEで質問する
               </Button>
             </Link>
-            <Link href="/">
-              <Button variant="outline" className="border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-8 py-4 text-lg font-semibold w-full sm:w-auto">
-                トップページに戻る
-              </Button>
-            </Link>
+            <Button 
+              variant="outline" 
+              className="border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-8 py-4 text-lg font-semibold w-full sm:w-auto"
+              onClick={() => window.history.back()}
+            >
+              トップページに戻る
+            </Button>
           </div>
           
           <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">

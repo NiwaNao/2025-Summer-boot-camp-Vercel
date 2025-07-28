@@ -199,16 +199,15 @@ export default function AboutPage() {
                     LINEでお問い合わせ
                   </Button>
                 </Link>
-                <Link href="/">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-8 py-4 text-lg font-semibold bg-transparent flex items-center gap-2"
-                  >
-                    <ArrowLeft className="w-5 h-5" />
-                    トップページに戻る
-                  </Button>
-                </Link>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-8 py-4 text-lg font-semibold bg-transparent flex items-center gap-2"
+                  onClick={() => window.history.back()}
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                  トップページに戻る
+                </Button>
               </div>
             </CardContent>
           </Card>

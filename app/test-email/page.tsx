@@ -144,11 +144,14 @@ export default function TestEmailPage() {
         </Card>
 
         <div className="text-center mt-8">
-          <Link href="/apply">
-            <Button variant="outline" size="lg" className="px-8 py-4 bg-transparent">
-              申し込みページに戻る
-            </Button>
-          </Link>
+          <Button 
+            variant="outline" 
+            size="lg" 
+            className="px-8 py-4 bg-transparent"
+            onClick={() => window.history.back()}
+          >
+            申し込みページに戻る
+          </Button>
         </div>
       </div>
     </div>

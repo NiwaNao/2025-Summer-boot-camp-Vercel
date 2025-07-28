@@ -813,15 +813,14 @@ export default function ApplyPage() {
                     LINEで相談する
                   </Button>
                 </Link>
-                <Link href="/" className="w-full sm:w-auto max-w-xs">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-8 py-4 text-lg font-semibold bg-transparent w-full justify-center"
-                  >
-                    トップページに戻る
-                  </Button>
-                </Link>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-8 py-4 text-lg font-semibold bg-transparent w-full justify-center"
+                  onClick={() => window.history.back()}
+                >
+                  トップページに戻る
+                </Button>
               </div>
             </CardContent>
           </Card>

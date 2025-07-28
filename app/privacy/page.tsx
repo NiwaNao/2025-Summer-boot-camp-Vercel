@@ -257,11 +257,13 @@ export default function PrivacyPage() {
         </Card>
 
         <div className="text-center mt-8">
-          <Link href="/apply">
-            <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg font-semibold">
-              申し込みフォームに戻る
-            </Button>
-          </Link>
+          <Button 
+            size="lg" 
+            className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg font-semibold"
+            onClick={() => window.history.back()}
+          >
+            申し込みフォームに戻る
+          </Button>
         </div>
       </div>
     </div>
