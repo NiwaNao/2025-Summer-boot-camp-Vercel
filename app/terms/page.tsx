@@ -18,7 +18,13 @@ export default function TermsPage() {
       <header className="bg-white shadow-sm border-b">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <button 
-            onClick={() => window.history.back()} 
+            onClick={() => {
+              if (window.history.length > 1) {
+                window.history.back()
+              } else {
+                window.location.href = '/'
+              }
+            }} 
             className="flex items-center gap-2 text-blue-900 hover:text-blue-700"
           >
             <ArrowLeft className="w-5 h-5" />
