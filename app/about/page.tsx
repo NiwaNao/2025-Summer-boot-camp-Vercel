@@ -19,9 +19,13 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <button 
             onClick={() => {
-              if (window.history.length > 1) {
-                window.history.back()
-              } else {
+              try {
+                if (document.referrer && document.referrer !== window.location.href) {
+                  window.history.back()
+                } else {
+                  window.location.href = '/'
+                }
+              } catch (error) {
                 window.location.href = '/'
               }
             }} 
