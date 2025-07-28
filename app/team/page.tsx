@@ -20,17 +20,7 @@ export default function TeamPage() {
       <header className="bg-white shadow-sm border-b">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <button 
-            onClick={() => {
-              try {
-                if (document.referrer && document.referrer !== window.location.href) {
-                  window.history.back()
-                } else {
-                  window.location.href = '/'
-                }
-              } catch (error) {
-                window.location.href = '/'
-              }
-            }} 
+            onClick={() => window.history.back()} 
             className="flex items-center gap-2 text-blue-900 hover:text-blue-700"
           >
             <ArrowLeft className="w-5 h-5" />
