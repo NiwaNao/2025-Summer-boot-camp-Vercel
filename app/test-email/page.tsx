@@ -40,10 +40,13 @@ export default function TestEmailPage() {
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-2 text-blue-900 hover:text-blue-700">
+          <button 
+            onClick={() => window.history.back()} 
+            className="flex items-center gap-2 text-blue-900 hover:text-blue-700"
+          >
             <ArrowLeft className="w-5 h-5" />
             <span className="text-2xl font-bold">TOWA</span>
-          </Link>
+          </button>
           <div className="flex items-center gap-2 text-gray-600">
             <Mail className="w-5 h-5" />
             <span>メール送信テスト</span>
