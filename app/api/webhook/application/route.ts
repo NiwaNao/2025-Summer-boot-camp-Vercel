@@ -1,13 +1,20 @@
 import { type NextRequest, NextResponse } from "next/server"
 import nodemailer from "nodemailer"
+import { applicationSchema, sanitizeInput, normalizeEmail, normalizePhoneNumber } from "@/lib/validation"
+import { checkRateLimit } from "@/lib/rate-limit"
+import { logSecurityEvent, SecurityEvent } from "@/lib/logger"
 
-// Nodemailerの設定
+// Nodemailerの設定（アプリパスワードを使用）
 const createTransporter = () => {
+  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+    throw new Error("Gmail credentials not configured")
+  }
+  
   return nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASSWORD
+      pass: process.env.GMAIL_APP_PASSWORD  // アプリパスワードを使用
     }
   })
 }
@@ -114,8 +121,64 @@ async function sendEmail(to: string, subject: string, text: string) {
 
 export async function POST(request: NextRequest) {
   try {
+    // レート制限チェック
+    const rateLimit = checkRateLimit(request, "webhook-application", 5, 60000) // 1分間に5回まで
+    if (!rateLimit.allowed) {
+      logSecurityEvent(
+        SecurityEvent.RATE_LIMIT_EXCEEDED,
+        `Rate limit exceeded for IP: ${request.headers.get('x-forwarded-for') || 'unknown'}`,
+        request,
+        { remaining: rateLimit.remaining, resetTime: rateLimit.resetTime }
+      )
+      
+      return NextResponse.json(
+        { 
+          success: false, 
+          message: "リクエストが多すぎます。しばらく待ってから再試行してください。" 
+        },
+        { 
+          status: 429,
+          headers: {
+            'X-RateLimit-Remaining': rateLimit.remaining.toString(),
+            'X-RateLimit-Reset': rateLimit.resetTime.toString(),
+          }
+        }
+      )
+    }
+    
     console.log("=== Webhook処理開始 ===")
-    const applicationData = await request.json()
+    const rawData = await request.json()
+    
+    // 入力値のサニタイズ
+    const sanitizedData = {
+      ...rawData,
+      attendeeName: sanitizeInput(rawData.attendeeName || ''),
+      email: normalizeEmail(rawData.email || ''),
+      phone: normalizePhoneNumber(rawData.phone || ''),
+      company: rawData.company ? sanitizeInput(rawData.company) : undefined,
+      motivation: sanitizeInput(rawData.motivation || ''),
+      partnerName: rawData.partnerName ? sanitizeInput(rawData.partnerName) : undefined,
+      partnerEmail: rawData.partnerEmail ? normalizeEmail(rawData.partnerEmail) : undefined,
+      partnerPhone: rawData.partnerPhone ? normalizePhoneNumber(rawData.partnerPhone) : undefined,
+    }
+    
+    // 入力値検証
+    const validationResult = applicationSchema.safeParse(sanitizedData)
+    if (!validationResult.success) {
+      logSecurityEvent(
+        SecurityEvent.INVALID_INPUT,
+        "Invalid input validation failed",
+        request,
+        { errors: validationResult.error.errors }
+      )
+      
+      return NextResponse.json(
+        { success: false, message: "入力値が無効です", errors: validationResult.error.errors },
+        { status: 400 }
+      )
+    }
+    
+    const applicationData = validationResult.data
     console.log("受信したデータ:", JSON.stringify(applicationData, null, 2))
 
     // 運営側への通知メール内容
@@ -172,7 +235,7 @@ ${
 料金: ¥${applicationData.price.toLocaleString()}
 
 【申し込み日時】
-${new Date(applicationData.timestamp).toLocaleString("ja-JP")}
+${new Date(applicationData.timestamp || new Date()).toLocaleString("ja-JP")}
 
 【同意情報】
 利用規約: 同意済み
@@ -243,8 +306,14 @@ Webhook URL: ${request.url}
   } catch (error) {
     console.error("=== Webhook処理エラー ===")
     console.error("Error details:", error)
+    
+    // 本番環境では詳細エラーを隠す
+    const errorMessage = process.env.NODE_ENV === "production" 
+      ? "申し込み情報の処理に失敗しました" 
+      : String(error)
+    
     return NextResponse.json(
-      { success: false, message: "申し込み情報の処理に失敗しました", error: String(error) },
+      { success: false, message: errorMessage },
       { status: 500 },
     )
   }

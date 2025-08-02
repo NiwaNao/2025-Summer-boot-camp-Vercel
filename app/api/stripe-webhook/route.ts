@@ -1,10 +1,14 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { headers } from "next/headers"
 import nodemailer from "nodemailer"
+import { logSecurityEvent, SecurityEvent } from "@/lib/logger"
 
-// Stripe設定（環境変数が未設定の場合のデフォルト値）
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY || "sk_test_dummy_key_for_build"
-const stripe = require("stripe")(stripeSecretKey)
+// Stripe設定（環境変数チェック強化）
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error("STRIPE_SECRET_KEY not configured")
+}
+
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 
 // デバッグログ制御
 const isDevelopment = process.env.NODE_ENV === "development"
@@ -18,13 +22,17 @@ const debugLog = (message: string, data?: any) => {
   }
 }
 
-// Nodemailerの設定
+// Nodemailerの設定（アプリパスワードを使用）
 const createTransporter = () => {
+  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+    throw new Error("Gmail credentials not configured")
+  }
+  
   return nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASSWORD
+      pass: process.env.GMAIL_APP_PASSWORD  // アプリパスワードを使用
     }
   })
 }
@@ -62,14 +70,20 @@ export async function POST(request: NextRequest) {
 
     try {
       // Stripe Webhookの署名検証（本番環境では必須）
-      // 開発環境では署名検証をスキップ
-      if (process.env.STRIPE_WEBHOOK_SECRET) {
-        event = stripe.webhooks.constructEvent(body, signature, process.env.STRIPE_WEBHOOK_SECRET)
-      } else {
-        event = JSON.parse(body)
+      if (!process.env.STRIPE_WEBHOOK_SECRET) {
+        console.error("STRIPE_WEBHOOK_SECRET not configured")
+        return NextResponse.json({ error: "Webhook secret not configured" }, { status: 500 })
       }
+      
+      // 開発環境でも署名検証を実行（セキュリティ強化）
+      event = stripe.webhooks.constructEvent(body, signature, process.env.STRIPE_WEBHOOK_SECRET)
     } catch (err) {
-      console.error("Webhook signature verification failed:", err)
+      logSecurityEvent(
+        SecurityEvent.WEBHOOK_VERIFICATION_FAILED,
+        "Stripe webhook signature verification failed",
+        request,
+        { error: String(err) }
+      )
       return NextResponse.json({ error: "Webhook signature verification failed" }, { status: 400 })
     }
 
